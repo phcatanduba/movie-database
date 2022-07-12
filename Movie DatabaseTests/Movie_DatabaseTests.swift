@@ -9,28 +9,49 @@ import XCTest
 @testable import Movie_Database
 
 class Movie_DatabaseTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    
+    let movieTest = MovieTest()
+    
+    func testGetByGenre() throws {
+        let romanceList = movieTest.movieViewModel.getByGenre(genre: movieTest.romance)
+        let terrorList = movieTest.movieViewModel.getByGenre(genre: movieTest.terror)
+        let musicalList = movieTest.movieViewModel.getByGenre(genre: movieTest.musical)
+    
+        XCTAssertTrue(romanceList == movieTest.movieViewModel.movies)
+        XCTAssertTrue(terrorList == [movieTest.movieOne, movieTest.movieThree])
+        XCTAssertTrue(musicalList == [movieTest.movieTwo])
+    }
+    
+    func testSortByName() {
+        movieTest.movieViewModel.sortByName()
+        XCTAssertEqual(movieTest.movieViewModel.movies, [movieTest.movieTwo, movieTest.movieThree, movieTest.movieOne])
+    }
+    
+    func testSortByDate() {
+        movieTest.movieViewModel.sortByDate(order: <)
+        XCTAssertEqual(movieTest.movieViewModel.movies, [movieTest.movieOne, movieTest.movieTwo, movieTest.movieThree])
+        
+        movieTest.movieViewModel.sortByDate(order: >)
+        XCTAssertEqual(movieTest.movieViewModel.movies, [movieTest.movieThree, movieTest.movieTwo, movieTest.movieOne])
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
+}
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+class MovieTest {
+    let romance = Genre(id: 1, name: "romance")
+    let terror = Genre(id: 0, name: "terror")
+    let musical = Genre(id: 2, name: "musical")
+    
+    let movieOne: Movie
+    let movieTwo: Movie
+    let movieThree: Movie
+    
+    let movieViewModel: MovieViewModel
+    
+    init() {
+        movieOne =  Movie(id: 1, voteAverage: 2, title: "madagascar", originalTitle: "madagascar", popularity: 10, posterPath: "posterPath", backdropPath: "backdropPath", overview: "overview", releaseDate: "18/07/2000", genres: [terror, romance])
+        movieTwo = Movie(id: 2, voteAverage: 2, title: "madagascar", originalTitle: "aadagascar", popularity: 10, posterPath: "posterPath", backdropPath: "backdropPath", overview: "overview", releaseDate: "16/07/2000", genres: [musical, romance])
+        movieThree = Movie(id: 3, voteAverage: 2, title: "madagascar", originalTitle: "badagascar", popularity: 10, posterPath: "posterPath", backdropPath: "backdropPath", overview: "overview", releaseDate: "16/07/1996", genres: [terror, romance])
+        movieViewModel = MovieViewModel(movies:[movieOne, movieTwo, movieThree])
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }
