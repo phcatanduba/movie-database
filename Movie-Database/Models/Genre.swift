@@ -37,6 +37,7 @@ struct Movie: Equatable {
 extension Date {
     init(dateString: String) {
         let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
         if let date = formatter.date(from: dateString) {
             self = date
         } else {

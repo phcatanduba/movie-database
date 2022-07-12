@@ -27,9 +27,9 @@ class Movie_DatabaseTests: XCTestCase {
     }
     
     func testSortByDate() {
-        XCTAssertEqual(movieTest.movieViewModel.sortByDate(order: <), [movieTest.movieOne, movieTest.movieTwo, movieTest.movieThree])
+        XCTAssertEqual(movieTest.movieViewModel.sortByDate(order: <), [movieTest.movieTwo, movieTest.movieThree, movieTest.movieOne])
         
-        XCTAssertEqual(movieTest.movieViewModel.sortByDate(order: >), [movieTest.movieThree, movieTest.movieTwo, movieTest.movieOne])
+        XCTAssertEqual(movieTest.movieViewModel.sortByDate(order: >), [movieTest.movieOne, movieTest.movieThree, movieTest.movieTwo])
     }
 }
 
@@ -45,9 +45,9 @@ class MovieTest {
     let movieViewModel: MovieViewModel
     
     init() {
-        movieOne =  Movie(id: 1, voteAverage: 2, title: "madagascar", originalTitle: "madagascar", popularity: 10, posterPath: "posterPath", backdropPath: "backdropPath", overview: "overview", releaseDate: "18/07/2000", genres: [terror, romance])
-        movieTwo = Movie(id: 2, voteAverage: 2, title: "madagascar", originalTitle: "aadagascar", popularity: 10, posterPath: "posterPath", backdropPath: "backdropPath", overview: "overview", releaseDate: "16/07/2000", genres: [musical, romance])
-        movieThree = Movie(id: 3, voteAverage: 2, title: "madagascar", originalTitle: "badagascar", popularity: 10, posterPath: "posterPath", backdropPath: "backdropPath", overview: "overview", releaseDate: "16/07/1996", genres: [terror, romance])
+        movieOne =  Movie(id: 1, voteAverage: 2, title: "madagascar", originalTitle: "madagascar", popularity: 10, posterPath: "posterPath", backdropPath: "backdropPath", overview: "overview", releaseDate: "2000-07-18", genres: [terror, romance])
+        movieTwo = Movie(id: 2, voteAverage: 2, title: "madagascar", originalTitle: "aadagascar", popularity: 10, posterPath: "posterPath", backdropPath: "backdropPath", overview: "overview", releaseDate: "1994-07-17", genres: [musical, romance])
+        movieThree = Movie(id: 3, voteAverage: 2, title: "madagascar", originalTitle: "badagascar", popularity: 10, posterPath: "posterPath", backdropPath: "backdropPath", overview: "overview", releaseDate: "1996-07-16", genres: [terror, romance])
         movieViewModel = MovieViewModel(movies:[movieOne, movieTwo, movieThree])
     }
 }
