@@ -1,8 +1,8 @@
 //
 //  Movie_DatabaseUITestsLaunchTests.swift
-//  Movie DatabaseUITests
+//  Movie-DatabaseUITests
 //
-//  Created by Pedro Henrique Catanduba de Andrade on 05/07/22.
+//  Created by Pedro Henrique Catanduba de Andrade on 12/07/22.
 //
 
 import XCTest

@@ -1,15 +1,15 @@
 //
 //  Movie_DatabaseTests.swift
-//  Movie DatabaseTests
+//  Movie-DatabaseTests
 //
-//  Created by Pedro Henrique Catanduba de Andrade on 05/07/22.
+//  Created by Pedro Henrique Catanduba de Andrade on 12/07/22.
 //
 
 import XCTest
 @testable import Movie_Database
 
 class Movie_DatabaseTests: XCTestCase {
-    
+
     let movieTest = MovieTest()
     
     func testGetByGenre() throws {
@@ -23,18 +23,14 @@ class Movie_DatabaseTests: XCTestCase {
     }
     
     func testSortByName() {
-        movieTest.movieViewModel.sortByName()
-        XCTAssertEqual(movieTest.movieViewModel.movies, [movieTest.movieTwo, movieTest.movieThree, movieTest.movieOne])
+        XCTAssertEqual(movieTest.movieViewModel.sortByName(), [movieTest.movieTwo, movieTest.movieThree, movieTest.movieOne])
     }
     
     func testSortByDate() {
-        movieTest.movieViewModel.sortByDate(order: <)
-        XCTAssertEqual(movieTest.movieViewModel.movies, [movieTest.movieOne, movieTest.movieTwo, movieTest.movieThree])
+        XCTAssertEqual(movieTest.movieViewModel.sortByDate(order: <), [movieTest.movieOne, movieTest.movieTwo, movieTest.movieThree])
         
-        movieTest.movieViewModel.sortByDate(order: >)
-        XCTAssertEqual(movieTest.movieViewModel.movies, [movieTest.movieThree, movieTest.movieTwo, movieTest.movieOne])
+        XCTAssertEqual(movieTest.movieViewModel.sortByDate(order: >), [movieTest.movieThree, movieTest.movieTwo, movieTest.movieOne])
     }
-
 }
 
 class MovieTest {
