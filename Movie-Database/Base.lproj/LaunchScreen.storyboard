@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -10,16 +11,53 @@
         <scene sceneID="EHf-IW-A2E">
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <view key="view" autoresizesSubviews="NO" contentMode="scaleAspectFit" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Rectangle" translatesAutoresizingMaskIntoConstraints="NO" id="bJF-1x-AKF">
+                                <rect key="frame" x="0.0" y="0.0" width="399" height="812"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CI&amp;TLogo" translatesAutoresizingMaskIntoConstraints="NO" id="zix-iQ-HXW">
+                                <rect key="frame" x="97.666666666666686" y="368.66666666666669" width="180" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="180" id="YRU-m3-VeN"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="gWc-Nd-Lyl"/>
+                                    <constraint firstAttribute="width" secondItem="zix-iQ-HXW" secondAttribute="height" multiplier="12:5" id="q5c-hZ-fd2"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Database" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1gK-m2-Y9D">
+                                <rect key="frame" x="100.66666666666669" y="451" width="174" height="28"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="highlightedColor" red="1" green="1" blue="1" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6a0-sC-bSX"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="bJF-1x-AKF" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="EBa-op-zIX"/>
+                            <constraint firstItem="bJF-1x-AKF" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="Miu-89-5pb"/>
+                            <constraint firstItem="1gK-m2-Y9D" firstAttribute="centerX" secondItem="zix-iQ-HXW" secondAttribute="centerX" id="Nql-V0-8er"/>
+                            <constraint firstAttribute="trailing" secondItem="bJF-1x-AKF" secondAttribute="trailing" constant="-24" id="Q5h-B4-PZr"/>
+                            <constraint firstItem="bJF-1x-AKF" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="a18-3n-w7M"/>
+                            <constraint firstItem="1gK-m2-Y9D" firstAttribute="top" secondItem="zix-iQ-HXW" secondAttribute="bottom" constant="7.5" id="eHS-7C-OZq"/>
+                            <constraint firstItem="zix-iQ-HXW" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="gEe-Jb-75i"/>
+                            <constraint firstAttribute="bottom" secondItem="bJF-1x-AKF" secondAttribute="bottom" id="gXj-En-Wkc"/>
+                            <constraint firstItem="bJF-1x-AKF" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="hTp-33-45h"/>
+                            <constraint firstAttribute="bottom" secondItem="bJF-1x-AKF" secondAttribute="bottom" id="qrM-op-fYV"/>
+                            <constraint firstItem="zix-iQ-HXW" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="rrW-Hn-J13"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="289.0625" y="-44.53125"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="CI&amp;TLogo" width="182" height="75"/>
+        <image name="Rectangle" width="375" height="812"/>
+    </resources>
 </document>

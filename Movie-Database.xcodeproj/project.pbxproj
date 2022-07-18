@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B957E27C288307C3003A4616 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B957E27B288307C3003A4616 /* MovieCell.swift */; };
 		B97285C8287DEC45004DEA61 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97285C7287DEC45004DEA61 /* AppDelegate.swift */; };
 		B97285CA287DEC45004DEA61 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97285C9287DEC45004DEA61 /* SceneDelegate.swift */; };
 		B97285CC287DEC45004DEA61 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97285CB287DEC45004DEA61 /* ViewController.swift */; };
@@ -16,9 +17,10 @@
 		B97285DF287DEC46004DEA61 /* Movie_DatabaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97285DE287DEC46004DEA61 /* Movie_DatabaseTests.swift */; };
 		B97285E9287DEC46004DEA61 /* Movie_DatabaseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97285E8287DEC46004DEA61 /* Movie_DatabaseUITests.swift */; };
 		B97285EB287DEC46004DEA61 /* Movie_DatabaseUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97285EA287DEC46004DEA61 /* Movie_DatabaseUITestsLaunchTests.swift */; };
-		B97285FA287DECBA004DEA61 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97285F9287DECBA004DEA61 /* Genre.swift */; };
-		B97285FC287DECCB004DEA61 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97285FB287DECCB004DEA61 /* Movie.swift */; };
+		B97285FA287DECBA004DEA61 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97285F9287DECBA004DEA61 /* Movie.swift */; };
+		B97285FC287DECCB004DEA61 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97285FB287DECCB004DEA61 /* Genre.swift */; };
 		B97285FE287DECDB004DEA61 /* MovieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97285FD287DECDB004DEA61 /* MovieViewModel.swift */; };
+		B97ABBBA287F680500699918 /* Poppins-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B97ABBB9287F67F900699918 /* Poppins-Thin.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B957E27B288307C3003A4616 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		B97285C4287DEC45004DEA61 /* Movie-Database.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Movie-Database.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B97285C7287DEC45004DEA61 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B97285C9287DEC45004DEA61 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -52,9 +55,10 @@
 		B97285E4287DEC46004DEA61 /* Movie-DatabaseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Movie-DatabaseUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B97285E8287DEC46004DEA61 /* Movie_DatabaseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie_DatabaseUITests.swift; sourceTree = "<group>"; };
 		B97285EA287DEC46004DEA61 /* Movie_DatabaseUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie_DatabaseUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		B97285F9287DECBA004DEA61 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
-		B97285FB287DECCB004DEA61 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		B97285F9287DECBA004DEA61 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		B97285FB287DECCB004DEA61 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		B97285FD287DECDB004DEA61 /* MovieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewModel.swift; sourceTree = "<group>"; };
+		B97ABBB9287F67F900699918 /* Poppins-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-Thin.ttf"; path = "../../../../Downloads/Poppins/Poppins-Thin.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +86,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		89C468F01AE7747DA67EB805 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		B97285BB287DEC45004DEA61 = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +100,7 @@
 				B97285DD287DEC46004DEA61 /* Movie-DatabaseTests */,
 				B97285E7287DEC46004DEA61 /* Movie-DatabaseUITests */,
 				B97285C5287DEC45004DEA61 /* Products */,
+				89C468F01AE7747DA67EB805 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,6 +117,7 @@
 		B97285C6287DEC45004DEA61 /* Movie-Database */ = {
 			isa = PBXGroup;
 			children = (
+				B97ABBB0287F639600699918 /* Fonts */,
 				B97285F8287DECA7004DEA61 /* Models */,
 				B97285F7287DECA0004DEA61 /* ViewModels */,
 				B97285C7287DEC45004DEA61 /* AppDelegate.swift */,
@@ -112,6 +125,7 @@
 				B97285CB287DEC45004DEA61 /* ViewController.swift */,
 				B97285CD287DEC45004DEA61 /* Main.storyboard */,
 				B97285D0287DEC46004DEA61 /* Assets.xcassets */,
+				B957E27B288307C3003A4616 /* MovieCell.swift */,
 				B97285D2287DEC46004DEA61 /* LaunchScreen.storyboard */,
 				B97285D5287DEC46004DEA61 /* Info.plist */,
 			);
@@ -146,10 +160,18 @@
 		B97285F8287DECA7004DEA61 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B97285F9287DECBA004DEA61 /* Genre.swift */,
-				B97285FB287DECCB004DEA61 /* Movie.swift */,
+				B97285F9287DECBA004DEA61 /* Movie.swift */,
+				B97285FB287DECCB004DEA61 /* Genre.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		B97ABBB0287F639600699918 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				B97ABBB9287F67F900699918 /* Poppins-Thin.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,6 +281,7 @@
 				B97285D4287DEC46004DEA61 /* LaunchScreen.storyboard in Resources */,
 				B97285D1287DEC46004DEA61 /* Assets.xcassets in Resources */,
 				B97285CF287DEC45004DEA61 /* Main.storyboard in Resources */,
+				B97ABBBA287F680500699918 /* Poppins-Thin.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,11 +306,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B957E27C288307C3003A4616 /* MovieCell.swift in Sources */,
 				B97285CC287DEC45004DEA61 /* ViewController.swift in Sources */,
 				B97285C8287DEC45004DEA61 /* AppDelegate.swift in Sources */,
 				B97285CA287DEC45004DEA61 /* SceneDelegate.swift in Sources */,
-				B97285FA287DECBA004DEA61 /* Genre.swift in Sources */,
-				B97285FC287DECCB004DEA61 /* Movie.swift in Sources */,
+				B97285FA287DECBA004DEA61 /* Movie.swift in Sources */,
+				B97285FC287DECCB004DEA61 /* Genre.swift in Sources */,
 				B97285FE287DECDB004DEA61 /* MovieViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -466,6 +490,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3FR268SB5J;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Movie-Database/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -494,6 +519,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3FR268SB5J;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Movie-Database/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
