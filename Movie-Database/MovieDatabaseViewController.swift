@@ -7,14 +7,12 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MovieDatabaseViewController: UIViewController {
 
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
     @IBOutlet weak var movies: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Movie>!
-    
-
-    @IBOutlet weak var nowPlayingButton: UIButton!
-    @IBOutlet weak var comingSoonButton: UIButton!
     
     enum Section {
         case main
@@ -25,7 +23,7 @@ class ViewController: UIViewController {
         
         movies.collectionViewLayout = configureLayout()
         configureDataSource()
-        configureButtons()
+        configureSegmentedControl()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -54,7 +52,7 @@ class ViewController: UIViewController {
         
         let itemSize = NSCollectionLayoutSize(widthDimension: widthDimension, heightDimension: heightDimension)
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(0.5))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(290))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
         
@@ -77,22 +75,12 @@ class ViewController: UIViewController {
         
         var initialSnapshot = NSDiffableDataSourceSnapshot<Section, Movie>()
         initialSnapshot.appendSections([.main])
-        initialSnapshot.appendItems([Movie(id: 1, voteAverage: 2, title: "Captain Marvel", originalTitle: "madagascar", popularity: 10, posterPath: "posterPath", backdropPath: "backdropPath", overview: "overview", releaseDate: "2000-07-18", genres: [terror, romance]), Movie(id: 2, voteAverage: 2, title: "Avengers", originalTitle: "madagascar", popularity: 10, posterPath: "posterPath", backdropPath: "backdropPath", overview: "overview", releaseDate: "2000-07-18", genres: [terror, romance]), Movie(id: 3, voteAverage: 2, title: "Avengers End Game", originalTitle: "madagascar", popularity: 10, posterPath: "posterPath", backdropPath: "backdropPath", overview: "overview", releaseDate: "2000-07-18", genres: [terror, romance])])
+        initialSnapshot.appendItems([Movie(id: 1, voteAverage: 2, title: "Captain Marvel", originalTitle: "madagascar", popularity: 10, posterPath: "posterPath", backdropPath: "backdropPath", overview: "overview", releaseDate: "2000-07-18", genres: [terror, romance]), Movie(id: 2, voteAverage: 2, title: "Avengers", originalTitle: "madagascar", popularity: 10, posterPath: "posterPath", backdropPath: "backdropPath", overview: "overview", releaseDate: "2000-07-18", genres: [terror, romance]), Movie(id: 3, voteAverage: 2, title: "Avengers End Game", originalTitle: "madagascar", popularity: 10, posterPath: "posterPath", backdropPath: "backdropPath", overview: "overview", releaseDate: "2000-07-18", genres: [terror, romance]), Movie(id: 4, voteAverage: 2, title: "Avengers End Game", originalTitle: "madagascar", popularity: 10, posterPath: "posterPath", backdropPath: "backdropPath", overview: "overview", releaseDate: "2000-07-18", genres: [terror, romance]), Movie(id: 5, voteAverage: 2, title: "Avengers End Game", originalTitle: "madagascar", popularity: 10, posterPath: "posterPath", backdropPath: "backdropPath", overview: "overview", releaseDate: "2000-07-18", genres: [terror, romance]), Movie(id: 6, voteAverage: 2, title: "Avengers End Game", originalTitle: "madagascar", popularity: 10, posterPath: "posterPath", backdropPath: "backdropPath", overview: "overview", releaseDate: "2000-07-18", genres: [terror, romance]), Movie(id: 7, voteAverage: 2, title: "Avengers End Game", originalTitle: "madagascar", popularity: 10, posterPath: "posterPath", backdropPath: "backdropPath", overview: "overview", releaseDate: "2000-07-18", genres: [terror, romance])])
         dataSource.apply(initialSnapshot)
     }
     
-    func configureButtons() {
-        let comingSoonGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(changeFilter))
-        let nowPlayingGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(changeFilter))
-        comingSoonButton.addGestureRecognizer(comingSoonGestureRecognizer)
-        nowPlayingButton.addGestureRecognizer(nowPlayingGestureRecognizer)
-    }
-    
-    @objc func changeFilter() {
-        let comingSoonConfiguration = comingSoonButton.configuration?.background
-        comingSoonButton.configuration?.background = nowPlayingButton.configuration!.background
-        nowPlayingButton.configuration?.background = comingSoonConfiguration!
-        
+    func configureSegmentedControl() {
+        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: UIControl.State.normal)
     }
 }
 
