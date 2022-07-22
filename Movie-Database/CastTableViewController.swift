@@ -7,18 +7,29 @@
 
 import UIKit
 
-class CastTableViewController: UIViewController, UITableViewDataSource {
+class CastTableViewController: UITableViewController {
     
     override func viewDidLoad() {
-    
+        self.navigationItem.hidesBackButton = true
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        1
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
-    }
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CastCell", for: indexPath) as? CastCell else { fatalError("Cannot create a cell") }
+        
+        cell.imageCell.image = UIImage(named: "Keanu Reeves")
+        cell.imageCell.layer.cornerRadius = 25
+        cell.characterName.text = "John WickWickWickWickWickWickWickWickWickWickWickWickWickWickWickWick"
+        cell.actorName.text = "Keanu ReevesReevesReevesReevesReevesReevesReevesReevesReevesReevesReeves"
+        cell.selectionStyle = .none
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        3
+    }
 }

@@ -7,18 +7,29 @@
 
 import UIKit
 
-class PhotosTableViewController: UIViewController, UITableViewDataSource {
+class PhotosTableViewController: UITableViewController {
     
     override func viewDidLoad() {
-    
+        self.navigationItem.hidesBackButton = true
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        1
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoCell", for: indexPath) as? PhotoCell else { fatalError("Cannot create a cell") }
+        cell.imageCell?.image = UIImage(named: "photoCell")
+
+        cell.backgroundColor = .clear
+        cell.selectionStyle = .none
+
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        3
     }
     
 }

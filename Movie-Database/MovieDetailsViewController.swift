@@ -12,11 +12,22 @@ class MovieDetailsViewController: UIViewController {
    
     @IBOutlet weak var scrollView: UIScrollView!
     
+    @IBOutlet weak var castTableView: UITableView!
+    @IBOutlet weak var photosTableView: UITableView!
+    
     override func viewWillAppear(_ animated: Bool) {
-        scrollView.contentSize = CGSize(width: 0, height: 900)
+        scrollView.contentSize = CGSize(width: 0, height: 90000)
     }
     
     override func viewDidLoad() {
+
+    }
     
+    @IBAction func unwind( _ seg: UIStoryboardSegue) {
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("OKOK")
     }
 }
