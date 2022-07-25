@@ -9,7 +9,11 @@ import UIKit
 
 class MovieDatabaseViewController: UIViewController {
 
-    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var segmentedControl: UISegmentedControl! {
+        didSet {
+            configureSegmentedControl()
+        }
+    }
     
     @IBOutlet weak var movies: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Movie>!
@@ -23,11 +27,10 @@ class MovieDatabaseViewController: UIViewController {
         
         movies.collectionViewLayout = configureLayout()
         configureDataSource()
-        configureSegmentedControl()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("OK!")
+
     }
     
     override func viewWillAppear(_ animated: Bool) {

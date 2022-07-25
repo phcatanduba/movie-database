@@ -25,6 +25,7 @@
 		B98EB54C28876946002B4C71 /* PhotosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98EB54B28876946002B4C71 /* PhotosTableViewController.swift */; };
 		B98EB5502888B43C002B4C71 /* CastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98EB54F2888B43C002B4C71 /* CastCell.swift */; };
 		B98EB552288AE1F7002B4C71 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98EB551288AE1F7002B4C71 /* PhotoCell.swift */; };
+		B98EB554288EDBEF002B4C71 /* PhotoCellCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98EB553288EDBEF002B4C71 /* PhotoCellCollectionView.swift */; };
 		B9900F922886037F00E21597 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9900F912886037F00E21597 /* MovieDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +69,7 @@
 		B98EB54B28876946002B4C71 /* PhotosTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewController.swift; sourceTree = "<group>"; };
 		B98EB54F2888B43C002B4C71 /* CastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastCell.swift; sourceTree = "<group>"; };
 		B98EB551288AE1F7002B4C71 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
+		B98EB553288EDBEF002B4C71 /* PhotoCellCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCellCollectionView.swift; sourceTree = "<group>"; };
 		B9900F912886037F00E21597 /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,14 +131,12 @@
 			children = (
 				B97ABBB0287F639600699918 /* Fonts */,
 				B97285F8287DECA7004DEA61 /* Models */,
+				B98EB555288F1E48002B4C71 /* ViewControllers */,
 				B97285F7287DECA0004DEA61 /* ViewModels */,
 				B97285C7287DEC45004DEA61 /* AppDelegate.swift */,
 				B97285C9287DEC45004DEA61 /* SceneDelegate.swift */,
-				B98EB54928876936002B4C71 /* CastTableViewController.swift */,
+				B98EB553288EDBEF002B4C71 /* PhotoCellCollectionView.swift */,
 				B98EB54F2888B43C002B4C71 /* CastCell.swift */,
-				B98EB54B28876946002B4C71 /* PhotosTableViewController.swift */,
-				B97285CB287DEC45004DEA61 /* MovieDatabaseViewController.swift */,
-				B9900F912886037F00E21597 /* MovieDetailsViewController.swift */,
 				B97285CD287DEC45004DEA61 /* Main.storyboard */,
 				B98EB551288AE1F7002B4C71 /* PhotoCell.swift */,
 				B97285D0287DEC46004DEA61 /* Assets.xcassets */,
@@ -187,6 +187,17 @@
 				B97ABBB9287F67F900699918 /* Poppins-Thin.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		B98EB555288F1E48002B4C71 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B98EB54B28876946002B4C71 /* PhotosTableViewController.swift */,
+				B9900F912886037F00E21597 /* MovieDetailsViewController.swift */,
+				B97285CB287DEC45004DEA61 /* MovieDatabaseViewController.swift */,
+				B98EB54928876936002B4C71 /* CastTableViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -330,6 +341,7 @@
 				B97285CC287DEC45004DEA61 /* MovieDatabaseViewController.swift in Sources */,
 				B97285C8287DEC45004DEA61 /* AppDelegate.swift in Sources */,
 				B97285CA287DEC45004DEA61 /* SceneDelegate.swift in Sources */,
+				B98EB554288EDBEF002B4C71 /* PhotoCellCollectionView.swift in Sources */,
 				B97285FA287DECBA004DEA61 /* Movie.swift in Sources */,
 				B97285FC287DECCB004DEA61 /* Genre.swift in Sources */,
 				B97285FE287DECDB004DEA61 /* MovieViewModel.swift in Sources */,
