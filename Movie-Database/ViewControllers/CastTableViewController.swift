@@ -30,6 +30,6 @@ class CastTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        3
+        12
     }
 }

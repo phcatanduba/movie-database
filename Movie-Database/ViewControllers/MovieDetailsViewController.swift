@@ -18,6 +18,7 @@ class MovieDetailsViewController: UIViewController {
         if synopsis.isTruncated {
             synopsisButton.setTitle("Show Less", for: .normal)
             synopsisHeight.constant = synopsis.fullHeight
+            scrollView.contentSize = CGSize(width: 0, height: scrollView.contentSize.height + synopsis.fullHeight - 100)
             synopsis.layoutIfNeeded()
             synopsisButton.layoutIfNeeded()
         } else {
@@ -36,7 +37,7 @@ class MovieDetailsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        scrollView.contentSize = CGSize(width: 0, height: 90000)
+        scrollView.contentSize = CGSize(width: 0, height: UIScreen.main.bounds.height + photos.bounds.height * 4)
     }
     
     override func viewDidLoad() {
