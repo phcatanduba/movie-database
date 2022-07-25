@@ -12,12 +12,16 @@ class MovieDetailsViewController: UIViewController {
     
     @IBOutlet weak var synopsis: UILabel!
     @IBOutlet weak var synopsisHeight: NSLayoutConstraint!
+    @IBOutlet weak var synopsisButton: UIButton!
     
     @IBAction func changeSynopsisHeight(_ sender: Any) {
         if synopsis.isTruncated {
+            synopsisButton.setTitle("Show Less", for: .normal)
             synopsisHeight.constant = synopsis.fullHeight
             synopsis.layoutIfNeeded()
+            synopsisButton.layoutIfNeeded()
         } else {
+            synopsisButton.setTitle("Show More", for: .normal)
             synopsisHeight.constant = 100
             synopsis.layoutIfNeeded()
         }

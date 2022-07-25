@@ -177,6 +177,53 @@
                                                 <rect key="frame" x="-1" y="-25" width="376" height="247"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             </imageView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X08-88-ELR">
+                                                <rect key="frame" x="15" y="336" width="345" height="150"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="241" text="Synopsis" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eV0-Uj-wbz">
+                                                        <rect key="frame" x="0.0" y="0.0" width="73" height="30"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="30" id="od2-ru-tz0"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aE8-pd-pdV">
+                                                        <rect key="frame" x="2" y="25" width="335" height="100"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="100" id="CTk-N2-b8b"/>
+                                                        </constraints>
+                                                        <string key="text">With the untimely death of his beloved wife still bitter in his mouth, John Wick, the expert former assassin, receives one final gift from her--a precious keepsake to help John find a new meaning in life now that she is gone. But when the arrogant Russian mob prince, Iosef Tarasov, and his men pay Wick a rather unwelcome visit to rob him of his prized 1969 Mustang and his wife's present, the legendary hitman will be forced to unearth his meticulously concealed identity. Blind with revenge, John will immediately unleash a carefully orchestrated maelstrom of destruction against the sophisticated kingpin, Viggo Tarasov, and his family, who are fully aware of his lethal capacity. Now, only blood can quench the boogeyman's thirst for retribution.</string>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" white="1" alpha="0.67928935680000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8QJ-Gv-YUo">
+                                                        <rect key="frame" x="256.66666666666669" y="119" width="96.333333333333314" height="31"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Show More">
+                                                            <color key="baseForegroundColor" red="0.12549019610000001" green="0.74509803919999995" blue="0.77647058820000003" alpha="0.67928935680000002" colorSpace="calibratedRGB"/>
+                                                        </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="changeSynopsisHeight:" destination="PFK-uB-XCY" eventType="touchUpInside" id="1kU-NY-c0e"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="eV0-Uj-wbz" firstAttribute="leading" secondItem="X08-88-ELR" secondAttribute="leading" id="10r-3k-sFo"/>
+                                                    <constraint firstItem="aE8-pd-pdV" firstAttribute="centerY" secondItem="X08-88-ELR" secondAttribute="centerY" id="KFa-mo-cxU"/>
+                                                    <constraint firstItem="aE8-pd-pdV" firstAttribute="top" secondItem="X08-88-ELR" secondAttribute="top" constant="25" id="Ofb-7i-eVs"/>
+                                                    <constraint firstItem="8QJ-Gv-YUo" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="X08-88-ELR" secondAttribute="leading" constant="20" symbolic="YES" id="Plu-WS-E5Q"/>
+                                                    <constraint firstItem="aE8-pd-pdV" firstAttribute="leading" secondItem="X08-88-ELR" secondAttribute="leading" constant="2" id="QxD-Ce-bnt"/>
+                                                    <constraint firstItem="eV0-Uj-wbz" firstAttribute="top" secondItem="X08-88-ELR" secondAttribute="top" id="UdS-TR-eRG"/>
+                                                    <constraint firstItem="8QJ-Gv-YUo" firstAttribute="top" secondItem="aE8-pd-pdV" secondAttribute="bottom" constant="-6" id="eO5-ba-fit"/>
+                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="eV0-Uj-wbz" secondAttribute="trailing" constant="20" symbolic="YES" id="nl6-JZ-Zta"/>
+                                                    <constraint firstItem="aE8-pd-pdV" firstAttribute="trailing" secondItem="X08-88-ELR" secondAttribute="trailingMargin" id="ovY-Gi-Shb"/>
+                                                    <constraint firstAttribute="trailing" secondItem="8QJ-Gv-YUo" secondAttribute="trailing" constant="-8" id="p0L-VI-SUe"/>
+                                                </constraints>
+                                            </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="16" id="FH3-hH-kCw">
                                                 <rect key="frame" x="23" y="243" width="254.33333333333331" height="85.333333333333371"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -268,7 +315,7 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="9QV-9q-LXb">
-                                                <rect key="frame" x="0.0" y="808" width="375" height="145"/>
+                                                <rect key="frame" x="0.0" y="842" width="375" height="145"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WXu-g6-y8U">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
@@ -340,61 +387,14 @@
                                                     </collectionView>
                                                 </subviews>
                                                 <constraints>
+                                                    <constraint firstAttribute="height" constant="145" id="9zI-ON-yWf"/>
                                                     <constraint firstItem="WXu-g6-y8U" firstAttribute="leading" secondItem="9QV-9q-LXb" secondAttribute="leading" id="N9f-Gr-b0d"/>
                                                     <constraint firstAttribute="trailing" secondItem="WXu-g6-y8U" secondAttribute="trailing" id="tmf-yJ-zQp"/>
                                                 </constraints>
                                             </stackView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X08-88-ELR">
-                                                <rect key="frame" x="15" y="336" width="345" height="150"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="241" text="Synopsis" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eV0-Uj-wbz">
-                                                        <rect key="frame" x="0.0" y="0.0" width="73" height="30"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="30" id="od2-ru-tz0"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aE8-pd-pdV">
-                                                        <rect key="frame" x="2" y="25" width="335" height="100"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="100" id="CTk-N2-b8b"/>
-                                                        </constraints>
-                                                        <string key="text">With the untimely death of his beloved wife still bitter in his mouth, John Wick, the expert former assassin, receives one final gift from her--a precious keepsake to help John find a new meaning in life now that she is gone. But when the arrogant Russian mob prince, Iosef Tarasov, and his men pay Wick a rather unwelcome visit to rob him of his prized 1969 Mustang and his wife's present, the legendary hitman will be forced to unearth his meticulously concealed identity. Blind with revenge, John will immediately unleash a carefully orchestrated maelstrom of destruction against the sophisticated kingpin, Viggo Tarasov, and his family, who are fully aware of his lethal capacity. Now, only blood can quench the boogeyman's thirst for retribution.</string>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <color key="textColor" white="1" alpha="0.67928935680000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8QJ-Gv-YUo">
-                                                        <rect key="frame" x="256.66666666666669" y="119" width="96.333333333333314" height="31"/>
-                                                        <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="Show More">
-                                                            <color key="baseForegroundColor" red="0.12549019610000001" green="0.74509803919999995" blue="0.77647058820000003" alpha="0.67928935680000002" colorSpace="calibratedRGB"/>
-                                                        </buttonConfiguration>
-                                                        <connections>
-                                                            <action selector="changeSynopsisHeight:" destination="PFK-uB-XCY" eventType="touchUpInside" id="1kU-NY-c0e"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstItem="eV0-Uj-wbz" firstAttribute="leading" secondItem="X08-88-ELR" secondAttribute="leading" id="10r-3k-sFo"/>
-                                                    <constraint firstItem="aE8-pd-pdV" firstAttribute="centerY" secondItem="X08-88-ELR" secondAttribute="centerY" id="KFa-mo-cxU"/>
-                                                    <constraint firstItem="aE8-pd-pdV" firstAttribute="top" secondItem="X08-88-ELR" secondAttribute="top" constant="25" id="Ofb-7i-eVs"/>
-                                                    <constraint firstItem="8QJ-Gv-YUo" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="X08-88-ELR" secondAttribute="leading" constant="20" symbolic="YES" id="Plu-WS-E5Q"/>
-                                                    <constraint firstItem="aE8-pd-pdV" firstAttribute="leading" secondItem="X08-88-ELR" secondAttribute="leading" constant="2" id="QxD-Ce-bnt"/>
-                                                    <constraint firstItem="eV0-Uj-wbz" firstAttribute="top" secondItem="X08-88-ELR" secondAttribute="top" id="UdS-TR-eRG"/>
-                                                    <constraint firstItem="8QJ-Gv-YUo" firstAttribute="top" secondItem="aE8-pd-pdV" secondAttribute="bottom" constant="-6" id="eO5-ba-fit"/>
-                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="eV0-Uj-wbz" secondAttribute="trailing" constant="20" symbolic="YES" id="nl6-JZ-Zta"/>
-                                                    <constraint firstItem="aE8-pd-pdV" firstAttribute="trailing" secondItem="X08-88-ELR" secondAttribute="trailingMargin" id="ovY-Gi-Shb"/>
-                                                    <constraint firstAttribute="trailing" secondItem="8QJ-Gv-YUo" secondAttribute="trailing" constant="-8" id="p0L-VI-SUe"/>
-                                                </constraints>
-                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="9QV-9q-LXb" secondAttribute="bottom" constant="1047" id="2Pa-bL-8c8"/>
                                             <constraint firstItem="X08-88-ELR" firstAttribute="leading" secondItem="j4X-Lt-sVd" secondAttribute="leading" constant="15" id="7T9-5e-GHc"/>
                                             <constraint firstAttribute="trailing" secondItem="9QV-9q-LXb" secondAttribute="trailing" id="DVe-wi-bui"/>
                                             <constraint firstItem="nVU-SB-iOM" firstAttribute="leading" secondItem="j4X-Lt-sVd" secondAttribute="leading" id="Ep8-3U-Aux"/>
@@ -402,7 +402,7 @@
                                             <constraint firstAttribute="trailing" secondItem="X08-88-ELR" secondAttribute="trailing" constant="15" id="STh-2K-Xec"/>
                                             <constraint firstItem="nVU-SB-iOM" firstAttribute="top" secondItem="X08-88-ELR" secondAttribute="bottom" constant="22" id="SUf-gI-N8e"/>
                                             <constraint firstItem="X08-88-ELR" firstAttribute="top" secondItem="FH3-hH-kCw" secondAttribute="bottom" constant="7.6666666666666288" id="Xep-R7-l0B"/>
-                                            <constraint firstItem="9QV-9q-LXb" firstAttribute="top" secondItem="nVU-SB-iOM" secondAttribute="bottom" id="gQr-72-NNg"/>
+                                            <constraint firstItem="9QV-9q-LXb" firstAttribute="top" secondItem="nVU-SB-iOM" secondAttribute="bottom" constant="34" id="dJF-IA-ehN"/>
                                             <constraint firstItem="9QV-9q-LXb" firstAttribute="leading" secondItem="j4X-Lt-sVd" secondAttribute="leading" id="x41-cX-8pu"/>
                                         </constraints>
                                     </view>
@@ -421,6 +421,7 @@
                         <outlet property="photos" destination="szu-YN-Ysu" id="ecY-1T-rfb"/>
                         <outlet property="scrollView" destination="Jie-Hc-QUA" id="Cxx-1r-CGf"/>
                         <outlet property="synopsis" destination="aE8-pd-pdV" id="sRk-LG-MSW"/>
+                        <outlet property="synopsisButton" destination="8QJ-Gv-YUo" id="rzB-wJ-qSh"/>
                         <outlet property="synopsisHeight" destination="CTk-N2-b8b" id="Zfl-77-XjZ"/>
                     </connections>
                 </viewController>
