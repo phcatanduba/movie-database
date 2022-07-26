@@ -14,16 +14,19 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var synopsisHeight: NSLayoutConstraint!
     @IBOutlet weak var synopsisButton: UIButton!
     
+    var initialSynopsisHeightSize: CGSize = CGSize()
+    
     @IBAction func changeSynopsisHeight(_ sender: Any) {
         if synopsis.isTruncated {
             synopsisButton.setTitle("Show Less", for: .normal)
             synopsisHeight.constant = synopsis.fullHeight
-            scrollView.contentSize = CGSize(width: 0, height: scrollView.contentSize.height + synopsis.fullHeight - 100)
+            scrollView.contentSize = CGSize(width: 0, height: initialSynopsisHeightSize.height + synopsis.fullHeight - 100)
             synopsis.layoutIfNeeded()
             synopsisButton.layoutIfNeeded()
         } else {
             synopsisButton.setTitle("Show More", for: .normal)
             synopsisHeight.constant = 100
+            scrollView.contentSize = initialSynopsisHeightSize
             synopsis.layoutIfNeeded()
         }
     }
@@ -37,7 +40,8 @@ class MovieDetailsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        scrollView.contentSize = CGSize(width: 0, height: UIScreen.main.bounds.height + photos.bounds.height * 4)
+        initialSynopsisHeightSize = CGSize(width: 0, height: UIScreen.main.bounds.height + photos.bounds.height * 4)
+        scrollView.contentSize = initialSynopsisHeightSize
     }
     
     override func viewDidLoad() {

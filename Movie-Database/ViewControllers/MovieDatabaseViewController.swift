@@ -24,7 +24,6 @@ class MovieDatabaseViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         movies.collectionViewLayout = configureLayout()
         configureDataSource()
     }
@@ -82,8 +81,14 @@ class MovieDatabaseViewController: UIViewController {
         dataSource.apply(initialSnapshot)
     }
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        configureSegmentedControl()
+    }
+    
     func configureSegmentedControl() {
-        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: UIControl.State.normal)
+        let isLightMode = UITraitCollection.current.userInterfaceStyle == .light
+        
+        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: isLightMode ? UIColor.black : UIColor.white], for: UIControl.State.normal)
     }
 }
 
