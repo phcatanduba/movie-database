@@ -479,7 +479,7 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Keanu ReeveseanuReevesKeanueevesKeanuReevesKeanuReeves" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IHu-4y-czV">
                                                             <rect key="frame" x="55" y="0.0" width="110" height="20.333333333333332"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <color key="textColor" name="Text"/>
+                                                            <color key="textColor" name="CharacterName"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -685,6 +685,9 @@
         <image name="john-wick-3 1" width="375" height="262"/>
         <image name="photoCell" width="343" height="224"/>
         <image name="threedots" width="17" height="4"/>
+        <namedColor name="CharacterName">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="Dropdown">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
