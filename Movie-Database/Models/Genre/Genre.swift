@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Genre: Equatable, Hashable {
+struct Genre: Equatable, Hashable, Encodable, Decodable {
     let id: Int
     let name: String
     

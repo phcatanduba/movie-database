@@ -28,6 +28,8 @@ class MovieDatabaseViewController: UIViewController {
         configureDataSource()
     }
     
+    let moviesList = MoviesStore().movies
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
     }
@@ -72,12 +74,11 @@ class MovieDatabaseViewController: UIViewController {
             cell.info.text = movie.originalTitle
             return cell
         }
-        let romance = Genre(id: 1, name: "romance")
-        let terror = Genre(id: 0, name: "terror")
+
         
         var initialSnapshot = NSDiffableDataSourceSnapshot<Section, Movie>()
         initialSnapshot.appendSections([.main])
-        initialSnapshot.appendItems([Movie(id: 1, voteAverage: 2, title: "Captain Marvel", originalTitle: "madagascar", popularity: 10, posterPath: "posterPath", backdropPath: "backdropPath", overview: "overview", releaseDate: "2000-07-18", genres: [terror, romance]), Movie(id: 2, voteAverage: 2, title: "Avengers", originalTitle: "madagascar", popularity: 10, posterPath: "posterPath", backdropPath: "backdropPath", overview: "overview", releaseDate: "2000-07-18", genres: [terror, romance]), Movie(id: 3, voteAverage: 2, title: "Avengers End Game", originalTitle: "madagascar", popularity: 10, posterPath: "posterPath", backdropPath: "backdropPath", overview: "overview", releaseDate: "2000-07-18", genres: [terror, romance]), Movie(id: 4, voteAverage: 2, title: "Avengers End Game", originalTitle: "madagascar", popularity: 10, posterPath: "posterPath", backdropPath: "backdropPath", overview: "overview", releaseDate: "2000-07-18", genres: [terror, romance]), Movie(id: 5, voteAverage: 2, title: "Avengers End Game", originalTitle: "madagascar", popularity: 10, posterPath: "posterPath", backdropPath: "backdropPath", overview: "overview", releaseDate: "2000-07-18", genres: [terror, romance]), Movie(id: 6, voteAverage: 2, title: "Avengers End Game", originalTitle: "madagascar", popularity: 10, posterPath: "posterPath", backdropPath: "backdropPath", overview: "overview", releaseDate: "2000-07-18", genres: [terror, romance]), Movie(id: 7, voteAverage: 2, title: "Avengers End Game", originalTitle: "madagascar", popularity: 10, posterPath: "posterPath", backdropPath: "backdropPath", overview: "overview", releaseDate: "2000-07-18", genres: [terror, romance])])
+        initialSnapshot.appendItems(moviesList)
         dataSource.apply(initialSnapshot)
     }
     

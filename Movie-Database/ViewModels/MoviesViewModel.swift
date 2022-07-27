@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MovieViewModel {
+struct MoviesViewModel {
     
     var movies: [Movie]
     

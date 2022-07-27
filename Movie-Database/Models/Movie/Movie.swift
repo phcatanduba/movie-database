@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Movie: Equatable, Hashable {
+struct Movie: Equatable, Hashable, Encodable, Decodable {
     
     let id: Int
     let voteAverage: Double
@@ -32,20 +32,6 @@ struct Movie: Equatable, Hashable {
         self.releaseDate = Date(dateString: releaseDate)
         self.genres = genres
     }
-    
-    func isAvailable() -> Bool {
-        return Date() < releaseDate
-    }
 }
 
-extension Date {
-    init(dateString: String) {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        if let date = formatter.date(from: dateString) {
-            self = date
-        } else {
-            self = Date()
-        }
-    }
-}
+
