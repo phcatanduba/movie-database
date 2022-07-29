@@ -25,10 +25,14 @@ class MovieDatabaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         movies.collectionViewLayout = configureLayout()
+        GenresStore()
         configureDataSource()
+        NotificationCenter.default.addObserver(self, selector: #selector(configureDataSource), name: NSNotification.Name("NowPlayingReceived"), object: nil)
     }
     
-    let moviesList = MoviesStore().movies
+    var moviesList: [Movie] {
+        MoviesStore.movies
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
@@ -36,6 +40,7 @@ class MovieDatabaseViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: animated)
+        
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -64,7 +69,7 @@ class MovieDatabaseViewController: UIViewController {
         
     }
     
-    func configureDataSource() {
+    @objc func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Movie>(collectionView: self.movies) { collectionView, indexPath, movie -> UICollectionViewCell? in
             guard let cell = self.movies.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as? MovieCell else {
                 fatalError("Cannot create new cell")

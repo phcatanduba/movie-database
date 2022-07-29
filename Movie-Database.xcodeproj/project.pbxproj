@@ -32,6 +32,7 @@
 		B9F458C92891C045005DC308 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F458C82891C045005DC308 /* Store.swift */; };
 		B9F458CB2891C52D005DC308 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F458CA2891C52D005DC308 /* Date.swift */; };
 		B9F458CE2891C636005DC308 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F458CD2891C636005DC308 /* UILabel.swift */; };
+		B9F458D228934B3D005DC308 /* GenresStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F458D128934B3D005DC308 /* GenresStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 		B9F458C82891C045005DC308 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		B9F458CA2891C52D005DC308 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		B9F458CD2891C636005DC308 /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
+		B9F458D128934B3D005DC308 /* GenresStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				B97285FB287DECCB004DEA61 /* Genre.swift */,
+				B9F458D128934B3D005DC308 /* GenresStore.swift */,
 			);
 			path = Genre;
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 				B98EB54C28876946002B4C71 /* PhotosTableViewController.swift in Sources */,
 				B9900F922886037F00E21597 /* MovieDetailsViewController.swift in Sources */,
 				B9F458C92891C045005DC308 /* Store.swift in Sources */,
+				B9F458D228934B3D005DC308 /* GenresStore.swift in Sources */,
 				B9F458CE2891C636005DC308 /* UILabel.swift in Sources */,
 				B98EB54A28876936002B4C71 /* CastTableViewController.swift in Sources */,
 				B98EB5502888B43C002B4C71 /* CastCell.swift in Sources */,
