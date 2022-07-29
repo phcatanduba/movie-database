@@ -36,9 +36,7 @@ class GenresStore {
     private  func requestGenres() {
         guard let url = genresURL else { return }
         let decoder = JSONDecoder()
-        
-        let urlSession = URLSession(configuration: .default)
-        urlSession.dataTask(with: url) { data, response, error in
+        Store.shared.getData(from: url) { data, response, error in
             guard let data = data else {
                 return
             }
@@ -57,7 +55,7 @@ class GenresStore {
             
             MoviesStore()
             //self.loadJSON()
-        }.resume()
+        }
     }
 }
 

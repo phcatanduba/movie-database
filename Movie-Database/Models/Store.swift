@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 
 class Store {
@@ -39,5 +40,9 @@ class Store {
         }
         
         return nil
+    }
+    
+    func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
     }
 }

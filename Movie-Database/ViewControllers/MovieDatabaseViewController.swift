@@ -35,7 +35,7 @@ class MovieDatabaseViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,21 +48,15 @@ class MovieDatabaseViewController: UIViewController {
     }
     
     func configureLayout() -> UICollectionViewCompositionalLayout {
-        let widthDimension: NSCollectionLayoutDimension
-        let heightDimension: NSCollectionLayoutDimension
-        
-        if UIDevice.current.orientation.isLandscape {
-            widthDimension = .fractionalHeight(1.0)
-            heightDimension = .fractionalWidth(0.5)
-        } else {
-            widthDimension = .fractionalWidth(0.5)
-            heightDimension = .fractionalHeight(1.0)
-        }
+        let widthDimension: NSCollectionLayoutDimension = .fractionalWidth(0.47)
+        let heightDimension: NSCollectionLayoutDimension = .fractionalHeight(1.0)
         
         let itemSize = NSCollectionLayoutSize(widthDimension: widthDimension, heightDimension: heightDimension)
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(290))
+        item.edgeSpacing = NSCollectionLayoutEdgeSpacing(leading: .fixed(0), top: .fixed(0), trailing: .flexible(0), bottom: .fixed(0))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(310))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+
         let section = NSCollectionLayoutSection(group: group)
         
         return UICollectionViewCompositionalLayout(section: section)
@@ -74,9 +68,9 @@ class MovieDatabaseViewController: UIViewController {
             guard let cell = self.movies.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as? MovieCell else {
                 fatalError("Cannot create new cell")
             }
-            cell.image.image =  UIImage(named: movie.title)
+            cell.image.image =  ImagesStore.images[movie.posterPath]?.uiImage
             cell.title.text = movie.title
-            cell.info.text = movie.originalTitle
+            cell.info.text = "\(movie.genres[0].name) * \(movie.releaseDate.formatted(date: .numeric, time: .omitted)) | \(movie.voteAverage)"
             return cell
         }
 

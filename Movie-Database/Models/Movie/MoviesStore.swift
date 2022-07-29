@@ -36,8 +36,7 @@ class MoviesStore {
         guard let url = nowPlayingURL else { return }
         let decoder = JSONDecoder()
         
-        let urlSession = URLSession(configuration: .default)
-        urlSession.dataTask(with: url) { data, response, error in
+        Store.shared.getData(from: url) {data, response, error in
             guard let data = data else {
                 return
             }
@@ -51,11 +50,14 @@ class MoviesStore {
             }
             
             MoviesStore.movies = movies.results
-            DispatchQueue.main.async {
-                NotificationCenter.default.post(name: NSNotification.Name("NowPlayingReceived"), object: nil)
+            
+            MoviesStore.movies.forEach { movie in
+                ImagesStore.shared.downloadImage(path: movie.posterPath, isLast: movie == MoviesStore.movies.last)
+                ImagesStore.shared.downloadImage(path: movie.backdropPath, isLast: movie == MoviesStore.movies.last)
             }
+
             //self.loadJSON()
-        }.resume()
+        }
     }
 }
 
