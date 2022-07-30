@@ -14,7 +14,10 @@ class GenresStore {
     static private(set) var genres: [Int : Genre] = [:]
     private let genresJsonURL = URL(fileURLWithPath: "Genres.json", relativeTo: FileManager.documentsDirectoryURL)
     
-    init() {
+    let callback: () -> ()
+    
+    init(callback: @escaping () -> ()) {
+        self.callback = callback
         requestGenres()
     }
     
@@ -53,8 +56,7 @@ class GenresStore {
                 GenresStore.genres[genre.id] = genre
             }
             
-            MoviesStore()
-            //self.loadJSON()
+            self.callback()
         }
     }
 }

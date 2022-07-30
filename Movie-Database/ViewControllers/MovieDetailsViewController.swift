@@ -6,15 +6,21 @@
 //
 
 import Foundation
+import Kingfisher
 import UIKit
 
 class MovieDetailsViewController: UIViewController {
     
+    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var synopsis: UILabel!
     @IBOutlet weak var synopsisHeight: NSLayoutConstraint!
     @IBOutlet weak var synopsisButton: UIButton!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var rating: UILabel!
+    @IBOutlet weak var genres: UILabel!
     
     var initialHeightSize: CGFloat = CGFloat()
+    var movie: Movie?
     
     @IBAction func changeSynopsisHeight(_ sender: Any) {
         if synopsis.isTruncated {
@@ -51,7 +57,7 @@ class MovieDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        updateData()
         configureDataSource()
         photos.collectionViewLayout = configureLayout()
     }
@@ -62,6 +68,20 @@ class MovieDetailsViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
+    }
+    
+    func updateData() {
+        guard let movie = movie else {
+            return
+        }
+
+        self.genres.text = movie.genres.map({ genre in
+            genre.name
+        }).joined(separator: ", ")
+        self.synopsis.text = movie.overview
+        self.titleLabel.text = movie.title
+        self.imageView.kf.setImage(with: URL(string: ImagesStore.rootURL + movie.backdropPath))
+        self.rating.text = "\(movie.voteAverage)"
     }
     
     func configureLayout() -> UICollectionViewCompositionalLayout {

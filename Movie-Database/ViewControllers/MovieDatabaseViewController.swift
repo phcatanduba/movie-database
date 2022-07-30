@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class MovieDatabaseViewController: UIViewController {
 
@@ -22,20 +23,33 @@ class MovieDatabaseViewController: UIViewController {
         case main
     }
     
+    func requests() {
+        _ = GenresStore {
+            _ = MoviesStore(callback: self.configureDataSource)
+        }
+    }
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         movies.collectionViewLayout = configureLayout()
-        GenresStore()
+        requests()
         configureDataSource()
-        NotificationCenter.default.addObserver(self, selector: #selector(configureDataSource), name: NSNotification.Name("NowPlayingReceived"), object: nil)
+        segmentedControl.addTarget(self, action: #selector(configureDataSource), for: .allEvents)
     }
     
     var moviesList: [Movie] {
-        MoviesStore.movies
+        if segmentedControl.selectedSegmentIndex == 0 {
+            return MoviesStore.moviesNowPlaying
+        } else {
+            return MoviesStore.moviesComingSoon
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let destination = segue.destination as? MovieDetailsViewController, let movieCell = sender as? MovieCell, let movie = movieCell.movie else { return }
         
+        destination.movie = movie
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -68,7 +82,8 @@ class MovieDatabaseViewController: UIViewController {
             guard let cell = self.movies.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as? MovieCell else {
                 fatalError("Cannot create new cell")
             }
-            cell.image.image =  ImagesStore.images[movie.posterPath]?.uiImage
+            cell.movie = movie
+            cell.image.kf.setImage(with: URL(string: ImagesStore.rootURL + movie.posterPath))
             cell.title.text = movie.title
             cell.info.text = "\(movie.genres[0].name) * \(movie.releaseDate.formatted(date: .numeric, time: .omitted)) | \(movie.voteAverage)"
             return cell

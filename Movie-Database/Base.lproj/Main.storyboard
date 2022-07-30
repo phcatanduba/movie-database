@@ -288,37 +288,39 @@
                                                     <constraint firstItem="aE8-pd-pdV" firstAttribute="top" secondItem="eV0-Uj-wbz" secondAttribute="bottom" constant="15" id="rH3-5S-7q7"/>
                                                 </constraints>
                                             </view>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="16" id="FH3-hH-kCw">
-                                                <rect key="frame" x="23" y="243" width="254.33333333333331" height="85.333333333333371"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="FH3-hH-kCw">
+                                                <rect key="frame" x="15" y="243.00000000000003" width="345" height="85.333333333333343"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Wick 3: Parabellum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3aT-nN-c4z">
-                                                        <rect key="frame" x="0.0" y="0.0" width="254.33333333333334" height="28.666666666666668"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Wick 3: ParabellumJohn Wick 3: ParabellumJohn Wick 3: ParabellumJohn Wick 3: Parabellum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3aT-nN-c4z">
+                                                        <rect key="frame" x="0.0" y="0.0" width="345" height="28.666666666666668"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                         <color key="textColor" name="Text"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="u2l-6C-Gln">
-                                                        <rect key="frame" x="0.0" y="44.666666666666671" width="234.66666666666666" height="40.666666666666671"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="u2l-6C-Gln">
+                                                        <rect key="frame" x="0.0" y="44.666666666666657" width="345" height="40.666666666666657"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.6" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SzF-1Z-e2h">
-                                                                <rect key="frame" x="0.0" y="1.3333333333333357" width="47.333333333333336" height="38.333333333333336"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="4.6" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SzF-1Z-e2h">
+                                                                <rect key="frame" x="0.0" y="0.33333333333334281" width="50" height="40"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="50" id="GaY-VR-ArW"/>
+                                                                    <constraint firstAttribute="height" constant="40" id="bwi-C7-loG"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                                                 <color key="textColor" systemColor="systemRedColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ntm-ym-pxo">
-                                                                <rect key="frame" x="70.333333333333329" y="0.0" width="164.33333333333337" height="40.666666666666664"/>
+                                                                <rect key="frame" x="58" y="0.0" width="287" height="40.666666666666664"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2hr 10m | R" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1eR-hY-W1o">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="164.33333333333334" height="20.333333333333332"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="287" height="20.333333333333332"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <color key="textColor" name="Text"/>
                                                                         <color key="highlightedColor" name="Text"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Action, Crime, Thriller" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gH4-b3-LgE">
-                                                                        <rect key="frame" x="0.0" y="20.333333333333336" width="164.33333333333334" height="20.333333333333336"/>
+                                                                        <rect key="frame" x="0.0" y="20.333333333333343" width="287" height="20.333333333333329"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <color key="textColor" name="Text"/>
                                                                         <nil key="highlightedColor"/>
@@ -329,6 +331,10 @@
                                                     </stackView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="u2l-6C-Gln" secondAttribute="trailing" id="9h2-xm-jIP"/>
+                                                    <constraint firstItem="u2l-6C-Gln" firstAttribute="leading" secondItem="FH3-hH-kCw" secondAttribute="leading" id="H2H-Xk-5hf"/>
+                                                </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="nVU-SB-iOM">
                                                 <rect key="frame" x="0.0" y="518" width="375" height="300"/>
@@ -459,13 +465,16 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="FH3-hH-kCw" secondAttribute="trailing" constant="15" id="3xq-03-fo0"/>
                                             <constraint firstItem="X08-88-ELR" firstAttribute="leading" secondItem="j4X-Lt-sVd" secondAttribute="leading" constant="15" id="7T9-5e-GHc"/>
                                             <constraint firstAttribute="trailing" secondItem="9QV-9q-LXb" secondAttribute="trailing" id="DVe-wi-bui"/>
                                             <constraint firstItem="nVU-SB-iOM" firstAttribute="leading" secondItem="j4X-Lt-sVd" secondAttribute="leading" id="Ep8-3U-Aux"/>
+                                            <constraint firstItem="FH3-hH-kCw" firstAttribute="leading" secondItem="j4X-Lt-sVd" secondAttribute="leading" constant="15" id="FrD-E1-28t"/>
                                             <constraint firstAttribute="trailing" secondItem="nVU-SB-iOM" secondAttribute="trailing" id="O2R-jD-5un"/>
                                             <constraint firstAttribute="trailing" secondItem="X08-88-ELR" secondAttribute="trailing" constant="15" id="STh-2K-Xec"/>
                                             <constraint firstItem="nVU-SB-iOM" firstAttribute="top" secondItem="X08-88-ELR" secondAttribute="bottom" constant="22" id="SUf-gI-N8e"/>
                                             <constraint firstItem="X08-88-ELR" firstAttribute="top" secondItem="FH3-hH-kCw" secondAttribute="bottom" constant="7.6666666666666288" id="Xep-R7-l0B"/>
+                                            <constraint firstItem="FH3-hH-kCw" firstAttribute="top" secondItem="LC3-TO-eAL" secondAttribute="bottom" constant="21.000000000000028" id="aCp-Sz-vI7"/>
                                             <constraint firstItem="9QV-9q-LXb" firstAttribute="top" secondItem="nVU-SB-iOM" secondAttribute="bottom" constant="22" id="dJF-IA-ehN"/>
                                             <constraint firstItem="9QV-9q-LXb" firstAttribute="leading" secondItem="j4X-Lt-sVd" secondAttribute="leading" id="x41-cX-8pu"/>
                                         </constraints>
@@ -482,11 +491,15 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="2000"/>
                     <connections>
+                        <outlet property="genres" destination="gH4-b3-LgE" id="F6O-aO-Bd0"/>
+                        <outlet property="imageView" destination="LC3-TO-eAL" id="YFP-BH-azU"/>
                         <outlet property="photos" destination="szu-YN-Ysu" id="ecY-1T-rfb"/>
+                        <outlet property="rating" destination="SzF-1Z-e2h" id="61L-FL-J1U"/>
                         <outlet property="scrollView" destination="Jie-Hc-QUA" id="Cxx-1r-CGf"/>
                         <outlet property="synopsis" destination="aE8-pd-pdV" id="sRk-LG-MSW"/>
                         <outlet property="synopsisButton" destination="8QJ-Gv-YUo" id="rzB-wJ-qSh"/>
                         <outlet property="synopsisHeight" destination="CTk-N2-b8b" id="Zfl-77-XjZ"/>
+                        <outlet property="titleLabel" destination="3aT-nN-c4z" id="1cO-lk-Lin"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PMq-3x-25k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -49,7 +49,6 @@ struct Movie: Equatable, Hashable, Encodable, Decodable {
         case genres = "genre_ids"
     }
     
-    
 }
 
 

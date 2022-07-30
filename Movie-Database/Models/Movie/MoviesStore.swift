@@ -9,31 +9,33 @@ import Foundation
 
 class MoviesStore {
     static private let apiKey = "05c08d6250b844f0386ad2e517d26d8f"
-    private let nowPlayingURL = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)&language=en-US")
 
-    static private(set) var movies: [Movie] = []
+    static private(set) var moviesNowPlaying: [Movie] = []
+    static private(set) var moviesComingSoon: [Movie] = []
     
-    private let moviesJsonURL = URL(fileURLWithPath: "Movies.json", relativeTo: FileManager.documentsDirectoryURL)
+    let callback: () -> ()
     
-    init() {
-        requestNowPlaying()
+    init(callback: @escaping () -> ()) {
+        self.callback = callback
+        request(type: .nowPlaying)
+        request(type: .comingSoon)
     }
     
-    private func saveJSON() {
-        Store.shared.saveJSON(content: [MoviesStore.movies], url: moviesJsonURL)
+    private func saveJSON(movieUrl: URL, movies: [Movie]) {
+        Store.shared.saveJSON(content: movies, url: movieUrl)
     }
     
-    private func loadJSON() {
-        guard let moviesDecoded = Store.shared.loadJSON(type: Movie.self, url: moviesJsonURL) else {
+    private func loadJSON(movieUrl: URL, movies: inout [Movie]) {
+        guard let moviesDecoded = Store.shared.loadJSON(type: Movie.self, url: movieUrl) else {
             print("Error in decoder \(Movie.self)")
             return
         }
         
-        MoviesStore.movies = moviesDecoded
+        movies = moviesDecoded
     }
     
-    private  func requestNowPlaying() {
-        guard let url = nowPlayingURL else { return }
+    private  func request(type: MovieType) {
+        guard let url = type.url else { return }
         let decoder = JSONDecoder()
         
         Store.shared.getData(from: url) {data, response, error in
@@ -48,15 +50,34 @@ class MoviesStore {
             guard let movies = try? decoder.decode(MoviesResponse.self, from: data) else {
                 return
             }
-            
-            MoviesStore.movies = movies.results
-            
-            MoviesStore.movies.forEach { movie in
-                ImagesStore.shared.downloadImage(path: movie.posterPath, isLast: movie == MoviesStore.movies.last)
-                ImagesStore.shared.downloadImage(path: movie.backdropPath, isLast: movie == MoviesStore.movies.last)
+            if type == .comingSoon {
+                MoviesStore.moviesComingSoon = movies.results
+            } else {
+                MoviesStore.moviesNowPlaying = movies.results
             }
-
-            //self.loadJSON()
+            
+            DispatchQueue.main.async {
+                self.callback()
+            }
+        }
+    }
+    
+    enum MovieType {
+        case comingSoon
+        case nowPlaying
+        
+        var url: URL? {
+            switch self {
+                case .comingSoon: return URL(string: "https://api.themoviedb.org/3/movie/upcoming?api_key=\(MoviesStore.apiKey)")
+                case .nowPlaying: return URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(MoviesStore.apiKey)")
+            }
+        }
+        
+        var jsonURL: URL? {
+            switch self {
+                case .comingSoon: return URL(fileURLWithPath: "MoviesNowPlaying.json", relativeTo: FileManager.documentsDirectoryURL)
+                case .nowPlaying: return URL(fileURLWithPath: "MoviesComingSoon.json", relativeTo: FileManager.documentsDirectoryURL)
+            }
         }
     }
 }
@@ -64,3 +85,5 @@ class MoviesStore {
 struct MoviesResponse: Codable {
     var results: [Movie]
 }
+
+
