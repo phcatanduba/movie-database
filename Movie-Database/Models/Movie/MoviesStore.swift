@@ -62,6 +62,57 @@ class MoviesStore {
         }
     }
     
+    static func requestDetails(id: Int, completion: @escaping (DetailsResponse) -> ()) {
+        guard let url = URL(string: "https://api.themoviedb.org/3/movie/\(id)?api_key=\(MoviesStore.apiKey)") else {
+            return
+        }
+        
+        let decoder = JSONDecoder()
+        
+        Store.shared.getData(from: url) { data, response, error in
+            guard let data = data else {
+                return
+            }
+
+            guard let detailsResponse = try? decoder.decode(DetailsResponse.self, from: data) else { return }
+            completion(detailsResponse)
+        }
+    }
+    
+    static func requestCastAndCrew(id: Int, completion: @escaping (CastAndCrewResponse) -> ()) {
+        guard let url = URL(string: "https://api.themoviedb.org/3/movie/\(id)/credits?api_key=\(apiKey)") else {
+            return
+        }
+        
+        let decoder = JSONDecoder()
+        
+        Store.shared.getData(from: url) { data, response, error in
+            guard let data = data else {
+                return
+            }
+
+            guard let castAndCrewResponse = try? decoder.decode(CastAndCrewResponse.self, from: data) else { return }
+            completion(castAndCrewResponse)
+        }
+    }
+    
+    static func requestImages(id: Int, completion: @escaping (ImagesResponse) -> ()) {
+        guard let url = URL(string: "https://api.themoviedb.org/3/movie/\(id)/images?api_key=\(apiKey)") else {
+            return
+        }
+        
+        let decoder = JSONDecoder()
+        
+        Store.shared.getData(from: url) { data, response, error in
+            guard let data = data else {
+                return
+            }
+
+            guard let imagesResponse = try? decoder.decode(ImagesResponse.self, from: data) else { return }
+            completion(imagesResponse)
+        }
+    }
+    
     enum MovieType {
         case comingSoon
         case nowPlaying
@@ -84,6 +135,48 @@ class MoviesStore {
 
 struct MoviesResponse: Codable {
     var results: [Movie]
+}
+
+struct DetailsResponse: Codable {
+    var runtime: Int
+    var adult: Bool
+    
+    var duration: String {
+        let time = self.runtime
+        let hours = time / 60
+        let mins = time % 60
+        let timeInText = "\(hours)h \(mins)m | \(adult ? "R" : "G")"
+        return timeInText
+    }
+}
+
+struct CastAndCrewResponse: Codable {
+    var cast: [Actor]
+}
+
+struct Actor: Codable {
+    let name: String
+    let character: String
+    let profilePath: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case name
+        case profilePath = "profile_path"
+        case character
+    }
+}
+
+struct ImagesResponse: Codable {
+    let backdrops: [Image]
+    let posters: [Image]
+}
+
+struct Image: Codable {
+    let filePath: String
+    
+    enum CodingKeys: String, CodingKey {
+        case filePath = "filepath_path"
+    }
 }
 
 

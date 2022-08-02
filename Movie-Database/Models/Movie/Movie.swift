@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Movie: Equatable, Hashable, Encodable, Decodable {
+struct Movie: Equatable, Hashable, Codable {
     
     let id: Int
     let voteAverage: Double
@@ -19,6 +19,7 @@ struct Movie: Equatable, Hashable, Encodable, Decodable {
     let overview: String
     let releaseDate: Date
     let genres: [Genre]
+    var runtime: String?
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

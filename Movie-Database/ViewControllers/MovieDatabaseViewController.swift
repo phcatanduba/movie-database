@@ -47,9 +47,27 @@ class MovieDatabaseViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let destination = segue.destination as? MovieDetailsViewController, let movieCell = sender as? MovieCell, let movie = movieCell.movie else { return }
-        
-        destination.movie = movie
+        if segue.identifier == "MovieDetails" {
+            guard let destination = segue.destination as? MovieDetailsViewController, let movieCell = sender as? MovieCell, let movie = movieCell.movie else { return }
+            MoviesStore.requestDetails(id: movie.id) { response in
+                DispatchQueue.main.async {
+                    destination.movie?.runtime = response.duration
+                }
+            }
+            
+            MoviesStore.requestCastAndCrew(id: movie.id) { response in
+                DispatchQueue.main.async {
+                    destination.cast = response.cast
+                }
+            }
+            
+            MoviesStore.requestImages(id: movie.id) { response in
+                DispatchQueue.main.async {
+                    
+                }
+            }
+            destination.movie = movie
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

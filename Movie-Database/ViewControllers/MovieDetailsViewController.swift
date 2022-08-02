@@ -11,6 +11,7 @@ import UIKit
 
 class MovieDetailsViewController: UIViewController {
     
+    @IBOutlet weak var runtime: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var synopsis: UILabel!
     @IBOutlet weak var synopsisHeight: NSLayoutConstraint!
@@ -20,7 +21,20 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var genres: UILabel!
     
     var initialHeightSize: CGFloat = CGFloat()
-    var movie: Movie?
+    var movie: Movie? {
+        didSet {
+            if isViewLoaded {
+                updateData()
+            }
+        }
+    }
+    var cast: [Actor] = [] {
+        didSet {
+            guard let castAndCrewTableViewController = self.children.first as? CastTableViewController else { return }
+            castAndCrewTableViewController.cast = cast
+            castAndCrewTableViewController.tableView.reloadData()
+        }
+    }
     
     @IBAction func changeSynopsisHeight(_ sender: Any) {
         if synopsis.isTruncated {
@@ -63,11 +77,14 @@ class MovieDetailsViewController: UIViewController {
     }
     
     @IBAction func unwind( _ seg: UIStoryboardSegue) {
-        
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
+        if segue.identifier == "CastSegue" {
+            guard let castAndCrewTableViewController = segue.destination.children.first as? CastTableViewController else { return }
+            castAndCrewTableViewController.cast = cast
+        }
     }
     
     func updateData() {
@@ -78,10 +95,11 @@ class MovieDetailsViewController: UIViewController {
         self.genres.text = movie.genres.map({ genre in
             genre.name
         }).joined(separator: ", ")
-        self.synopsis.text = movie.overview
+        self.synopsis.text = movie.overview + "\r\n"
         self.titleLabel.text = movie.title
         self.imageView.kf.setImage(with: URL(string: ImagesStore.rootURL + movie.backdropPath))
         self.rating.text = "\(movie.voteAverage)"
+        self.runtime.text = movie.runtime
     }
     
     func configureLayout() -> UICollectionViewCompositionalLayout {

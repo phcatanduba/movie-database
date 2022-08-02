@@ -6,8 +6,10 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CastTableViewController: UITableViewController {
+    var cast: [Actor] = []
     
     override func viewDidLoad() {
         self.navigationItem.hidesBackButton = true
@@ -18,18 +20,18 @@ class CastTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CastCell", for: indexPath) as? CastCell else { fatalError("Cannot create a cell") }
+        let actor = cast[indexPath.row]
         
-        cell.imageCell.image = UIImage(named: "Keanu Reeves")
+        cell.imageCell.kf.setImage(with: URL(string: ImagesStore.rootURL + (actor.profilePath ?? "")))
         cell.imageCell.layer.cornerRadius = 25
-        cell.characterName.text = "John WickWickWickWickWickWickWickWickWickWickWickWickWickWickWickWick"
-        cell.actorName.text = "Keanu ReevesReevesReevesReevesReevesReevesReevesReevesReevesReevesReeves"
+        cell.characterName.text = actor.character
+        cell.actorName.text = actor.name
         cell.selectionStyle = .none
         return cell
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        12
+        cast.count
     }
 }
