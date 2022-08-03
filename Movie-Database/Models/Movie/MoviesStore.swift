@@ -12,13 +12,20 @@ class MoviesStore {
 
     static private(set) var moviesNowPlaying: [Movie] = []
     static private(set) var moviesComingSoon: [Movie] = []
-    
+    static var _page = 1
+    var page: Int = 1 {
+        didSet {
+            request(type: .nowPlaying(page))
+            request(type: .comingSoon(page))
+            MoviesStore._page += 1
+        }
+    }
     let callback: () -> ()
     
     init(callback: @escaping () -> ()) {
         self.callback = callback
-        request(type: .nowPlaying)
-        request(type: .comingSoon)
+        request(type: .nowPlaying(page))
+        request(type: .comingSoon(page))
     }
     
     private func saveJSON(movieUrl: URL, movies: [Movie]) {
@@ -50,10 +57,11 @@ class MoviesStore {
             guard let movies = try? decoder.decode(MoviesResponse.self, from: data) else {
                 return
             }
-            if type == .comingSoon {
-                MoviesStore.moviesComingSoon = movies.results
+            
+            if type == .comingSoon(self.page) {
+                MoviesStore.moviesComingSoon.append(contentsOf: movies.results)
             } else {
-                MoviesStore.moviesNowPlaying = movies.results
+                MoviesStore.moviesNowPlaying.append(contentsOf: movies.results)
             }
             
             DispatchQueue.main.async {
@@ -121,14 +129,14 @@ class MoviesStore {
         }
     }
     
-    enum MovieType {
-        case comingSoon
-        case nowPlaying
+    enum MovieType: Equatable {
+        case comingSoon(_ page: Int)
+        case nowPlaying(_ page: Int)
         
         var url: URL? {
             switch self {
-                case .comingSoon: return URL(string: "https://api.themoviedb.org/3/movie/upcoming?api_key=\(MoviesStore.apiKey)")
-                case .nowPlaying: return URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(MoviesStore.apiKey)")
+                case .comingSoon(page: let page): return URL(string: "https://api.themoviedb.org/3/movie/upcoming?api_key=\(MoviesStore.apiKey)&page=\(page)")
+                case .nowPlaying(page: let page): return URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(MoviesStore.apiKey)&page=\(page)")
             }
         }
         

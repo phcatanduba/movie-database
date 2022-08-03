@@ -23,15 +23,18 @@ class MovieDatabaseViewController: UIViewController {
         case main
     }
     
+    var moviesStore: MoviesStore?
+    
     func requests() {
         _ = GenresStore {
-            _ = MoviesStore(callback: self.configureDataSource)
+            self.moviesStore = MoviesStore(callback: self.configureDataSource)
         }
     }
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        movies.delegate = self
         movies.collectionViewLayout = configureLayout()
         requests()
         configureDataSource()
@@ -117,6 +120,16 @@ class MovieDatabaseViewController: UIViewController {
         let isLightMode = UITraitCollection.current.userInterfaceStyle == .light
         
         segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: isLightMode ? UIColor.black : UIColor.white], for: UIControl.State.normal)
+    }
+}
+
+extension MovieDatabaseViewController: UICollectionViewDelegate {
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+
+        if scrollView.contentSize.height - 506 < scrollView.bounds.minY {
+            guard let moviesStore = moviesStore else { return }
+            moviesStore.page += 1
+        }
     }
 }
 
