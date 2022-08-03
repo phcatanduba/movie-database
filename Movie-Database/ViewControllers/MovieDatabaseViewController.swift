@@ -56,16 +56,13 @@ class MovieDatabaseViewController: UIViewController {
             }
             
             MoviesStore.requestCastAndCrew(id: movie.id) { response in
-                DispatchQueue.main.async {
-                    destination.cast = response.cast
-                }
+                destination.cast = response.cast
             }
             
             MoviesStore.requestImages(id: movie.id) { response in
-                DispatchQueue.main.async {
-                    
-                }
+                destination.images.append(contentsOf: response.backdrops)
             }
+            
             destination.movie = movie
         }
     }

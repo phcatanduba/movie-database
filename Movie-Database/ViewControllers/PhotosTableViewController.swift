@@ -9,6 +9,8 @@ import UIKit
 
 class PhotosTableViewController: UITableViewController {
     
+    var images: [Image] = []
+    
     override func viewDidLoad() {
         self.navigationItem.hidesBackButton = true
     }
@@ -20,7 +22,10 @@ class PhotosTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoCell", for: indexPath) as? PhotoCell else { fatalError("Cannot create a cell") }
-        cell.imageCell?.image = UIImage(named: "photoCell")
+        
+        let path = images[indexPath.row].filePath
+        
+        cell.imageCell?.kf.setImage(with: URL(string: ImagesStore.rootURL + path))
 
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
@@ -29,7 +34,7 @@ class PhotosTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        3
+        images.count
     }
     
 }

@@ -36,6 +36,13 @@ class MovieDetailsViewController: UIViewController {
         }
     }
     
+    var images: [Image] = [] {
+        didSet {
+            configureDataSource()
+            photos.collectionViewLayout = configureLayout()
+        }
+    }
+    
     @IBAction func changeSynopsisHeight(_ sender: Any) {
         if synopsis.isTruncated {
             synopsisButton.setTitle("Show Less", for: .normal)
@@ -72,8 +79,6 @@ class MovieDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateData()
-        configureDataSource()
-        photos.collectionViewLayout = configureLayout()
     }
     
     @IBAction func unwind( _ seg: UIStoryboardSegue) {
@@ -84,6 +89,12 @@ class MovieDetailsViewController: UIViewController {
         if segue.identifier == "CastSegue" {
             guard let castAndCrewTableViewController = segue.destination.children.first as? CastTableViewController else { return }
             castAndCrewTableViewController.cast = cast
+        }
+        
+        if segue.identifier == "ImagesSegue" {
+            guard let photosTableViewController = segue.destination.children.first as? PhotosTableViewController else { return }
+            
+            photosTableViewController.images = images
         }
     }
     
@@ -104,7 +115,7 @@ class MovieDetailsViewController: UIViewController {
     
     func configureLayout() -> UICollectionViewCompositionalLayout {
         let groupWidth = CGFloat(108 * dataSource.snapshot().numberOfItems)
-        let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(108), heightDimension: .fractionalHeight(1.0))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(108), heightDimension: .fractionalWidth(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(groupWidth), heightDimension: .fractionalHeight(1.0))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
@@ -114,17 +125,20 @@ class MovieDetailsViewController: UIViewController {
     }
     
     func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section, String>(collectionView: self.photos, cellProvider: { collectionView, indexPath, imageName in
+        dataSource = UICollectionViewDiffableDataSource<Section, String>(collectionView: self.photos, cellProvider: { collectionView, indexPath, imagePath in
             guard let cell = self.photos.dequeueReusableCell(withReuseIdentifier: "PhotoCellCollectionView", for: indexPath) as? PhotoCellCollectionView else { fatalError("Cannot create a cell")}
             
-            cell.imageView.image = UIImage(named: imageName)
+            cell.imageView.kf.setImage(with: URL(string: ImagesStore.rootURL + imagePath))
             
             return cell
         })
         
+        
         var initialSnapshot = NSDiffableDataSourceSnapshot<Section, String>()
         initialSnapshot.appendSections([.main])
-        initialSnapshot.appendItems(["collectionView", "collectionView2", "collectionView3", "collectionView4", "collectionView5", "collectionView6"])
+        initialSnapshot.appendItems(images.map({ image in
+            image.filePath
+        }))
         
         dataSource.apply(initialSnapshot)
     }

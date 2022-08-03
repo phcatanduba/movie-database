@@ -75,7 +75,10 @@ class MoviesStore {
             }
 
             guard let detailsResponse = try? decoder.decode(DetailsResponse.self, from: data) else { return }
-            completion(detailsResponse)
+            
+            DispatchQueue.main.async {
+                completion(detailsResponse)
+            }
         }
     }
     
@@ -92,7 +95,10 @@ class MoviesStore {
             }
 
             guard let castAndCrewResponse = try? decoder.decode(CastAndCrewResponse.self, from: data) else { return }
-            completion(castAndCrewResponse)
+            
+            DispatchQueue.main.async {
+                completion(castAndCrewResponse)
+            }
         }
     }
     
@@ -109,7 +115,9 @@ class MoviesStore {
             }
 
             guard let imagesResponse = try? decoder.decode(ImagesResponse.self, from: data) else { return }
-            completion(imagesResponse)
+            DispatchQueue.main.async {
+                completion(imagesResponse)
+            }
         }
     }
     
@@ -175,7 +183,7 @@ struct Image: Codable {
     let filePath: String
     
     enum CodingKeys: String, CodingKey {
-        case filePath = "filepath_path"
+        case filePath = "file_path"
     }
 }
 

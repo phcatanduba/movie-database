@@ -406,7 +406,7 @@
                                                                     <color key="baseForegroundColor" red="0.12549019610000001" green="0.74509803919999995" blue="0.77647058820000003" alpha="0.67928935680000002" colorSpace="calibratedRGB"/>
                                                                 </buttonConfiguration>
                                                                 <connections>
-                                                                    <segue destination="LTC-ln-5Kf" kind="presentation" id="YOc-Hx-sgW"/>
+                                                                    <segue destination="LTC-ln-5Kf" kind="presentation" identifier="ImagesSegue" id="YOc-Hx-sgW"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
