@@ -22,40 +22,46 @@ class GenresStore {
     }
     
     private func saveJSON() {
-        Store.shared.saveJSON(content: [GenresStore.genres], url: genresJsonURL)
+        Store.shared.saveJSON(content: GenresStore.genres, url: genresJsonURL)
     }
     
-    private func loadJSON() {
-        guard let genresDecoded = Store.shared.loadJSON(type: Genre.self, url: genresJsonURL) else {
+    private func loadJSON() -> [Int : Genre]? {
+        guard let genresDecoded = Store.shared.loadJSON(type: [Int : Genre].self, url: genresJsonURL) else {
             print("Error in decoder \(Genre.self)")
-            return
+            return nil
         }
+
+        GenresStore.genres = genresDecoded
         
-        genresDecoded.forEach { genre in
-            GenresStore.genres[genre.id] = genre
-        }
+        return nil
     }
     
     private  func requestGenres() {
         guard let url = genresURL else { return }
         let decoder = JSONDecoder()
-        Store.shared.getData(from: url) { data, response, error in
-            guard let data = data else {
-                return
-            }
-            
-            guard response != nil else {
-                return
-            }
+        
+        if loadJSON() == nil {
+            Store.shared.getData(from: url) { data, response, error in
+                guard let data = data else {
+                    return
+                }
+                
+                guard response != nil else {
+                    return
+                }
 
-            guard let result = try? decoder.decode(GenresResponse.self, from: data) else {
-                return
+                guard let result = try? decoder.decode(GenresResponse.self, from: data) else {
+                    return
+                }
+                
+                result.genres.forEach { genre in
+                    GenresStore.genres[genre.id] = genre
+                }
+                
+                self.saveJSON()
+                self.callback()
             }
-            
-            result.genres.forEach { genre in
-                GenresStore.genres[genre.id] = genre
-            }
-            
+        } else {
             self.callback()
         }
     }

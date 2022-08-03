@@ -26,7 +26,7 @@ class MoviesStore {
     }
     
     private func loadJSON(movieUrl: URL, movies: inout [Movie]) {
-        guard let moviesDecoded = Store.shared.loadJSON(type: Movie.self, url: movieUrl) else {
+        guard let moviesDecoded = Store.shared.loadJSON(type: [Movie].self, url: movieUrl) else {
             print("Error in decoder \(Movie.self)")
             return
         }

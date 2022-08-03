@@ -13,7 +13,7 @@ class Store {
     
     static let shared = Store()
     
-    func saveJSON<encodable: Encodable>(content: [encodable], url: URL) {
+    func saveJSON<encodable: Encodable>(content: encodable, url: URL) {
         let encoder = JSONEncoder()
         
         do {
@@ -26,14 +26,14 @@ class Store {
         }
     }
     
-    func loadJSON<decodable: Decodable>(type: decodable.Type, url: URL) -> [decodable]? {
+    func loadJSON<decodable: Decodable>(type: decodable.Type, url: URL) -> decodable? {
         let decoder = JSONDecoder()
         
         do {
             
             let data = try Data(contentsOf: url)
             
-            let dataDecoded = try decoder.decode([decodable].self, from: data)
+            let dataDecoded = try decoder.decode(type.self, from: data)
             return dataDecoded
         } catch let error {
             print(error)
