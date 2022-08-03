@@ -115,7 +115,7 @@ class MovieDetailsViewController: UIViewController {
     
     func configureLayout() -> UICollectionViewCompositionalLayout {
         let groupWidth = CGFloat(108 * dataSource.snapshot().numberOfItems)
-        let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(108), heightDimension: .fractionalWidth(1.0))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(108), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(groupWidth), heightDimension: .fractionalHeight(1.0))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])

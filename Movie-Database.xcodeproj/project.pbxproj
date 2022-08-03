@@ -28,6 +28,9 @@
 		B98EB552288AE1F7002B4C71 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98EB551288AE1F7002B4C71 /* PhotoCell.swift */; };
 		B98EB554288EDBEF002B4C71 /* PhotoCellCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98EB553288EDBEF002B4C71 /* PhotoCellCollectionView.swift */; };
 		B9900F922886037F00E21597 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9900F912886037F00E21597 /* MovieDetailsViewController.swift */; };
+		B9E1E17E289AE84E00733B42 /* DetailsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E1E17D289AE84E00733B42 /* DetailsResponse.swift */; };
+		B9E1E180289AE85E00733B42 /* ImagesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E1E17F289AE85E00733B42 /* ImagesResponse.swift */; };
+		B9E1E182289AE89300733B42 /* CastAndCrewResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E1E181289AE89300733B42 /* CastAndCrewResponse.swift */; };
 		B9F458C42891B426005DC308 /* MoviesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F458C32891B426005DC308 /* MoviesStore.swift */; };
 		B9F458C72891B494005DC308 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F458C62891B494005DC308 /* FileManager.swift */; };
 		B9F458C92891C045005DC308 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F458C82891C045005DC308 /* Store.swift */; };
@@ -81,6 +84,9 @@
 		B98EB551288AE1F7002B4C71 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		B98EB553288EDBEF002B4C71 /* PhotoCellCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCellCollectionView.swift; sourceTree = "<group>"; };
 		B9900F912886037F00E21597 /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
+		B9E1E17D289AE84E00733B42 /* DetailsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsResponse.swift; sourceTree = "<group>"; };
+		B9E1E17F289AE85E00733B42 /* ImagesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesResponse.swift; sourceTree = "<group>"; };
+		B9E1E181289AE89300733B42 /* CastAndCrewResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastAndCrewResponse.swift; sourceTree = "<group>"; };
 		B9F458C32891B426005DC308 /* MoviesStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesStore.swift; sourceTree = "<group>"; };
 		B9F458C62891B494005DC308 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		B9F458C82891C045005DC308 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
@@ -238,6 +244,9 @@
 			children = (
 				B97285F9287DECBA004DEA61 /* Movie.swift */,
 				B9F458C32891B426005DC308 /* MoviesStore.swift */,
+				B9E1E17D289AE84E00733B42 /* DetailsResponse.swift */,
+				B9E1E17F289AE85E00733B42 /* ImagesResponse.swift */,
+				B9E1E181289AE89300733B42 /* CastAndCrewResponse.swift */,
 			);
 			path = Movie;
 			sourceTree = "<group>";
@@ -429,6 +438,7 @@
 			files = (
 				B9F458C72891B494005DC308 /* FileManager.swift in Sources */,
 				B98EB54C28876946002B4C71 /* PhotosTableViewController.swift in Sources */,
+				B9E1E17E289AE84E00733B42 /* DetailsResponse.swift in Sources */,
 				B9900F922886037F00E21597 /* MovieDetailsViewController.swift in Sources */,
 				B9F458C92891C045005DC308 /* Store.swift in Sources */,
 				B9F458D228934B3D005DC308 /* GenresStore.swift in Sources */,
@@ -437,7 +447,9 @@
 				B98EB54A28876936002B4C71 /* CastTableViewController.swift in Sources */,
 				B98EB5502888B43C002B4C71 /* CastCell.swift in Sources */,
 				B9F458CB2891C52D005DC308 /* Date.swift in Sources */,
+				B9E1E182289AE89300733B42 /* CastAndCrewResponse.swift in Sources */,
 				B98EB552288AE1F7002B4C71 /* PhotoCell.swift in Sources */,
+				B9E1E180289AE85E00733B42 /* ImagesResponse.swift in Sources */,
 				B957E27C288307C3003A4616 /* MovieCell.swift in Sources */,
 				B97285CC287DEC45004DEA61 /* MovieDatabaseViewController.swift in Sources */,
 				B97285C8287DEC45004DEA61 /* AppDelegate.swift in Sources */,

@@ -145,46 +145,10 @@ struct MoviesResponse: Codable {
     var results: [Movie]
 }
 
-struct DetailsResponse: Codable {
-    var runtime: Int
-    var adult: Bool
-    
-    var duration: String {
-        let time = self.runtime
-        let hours = time / 60
-        let mins = time % 60
-        let timeInText = "\(hours)h \(mins)m | \(adult ? "R" : "G")"
-        return timeInText
-    }
-}
 
-struct CastAndCrewResponse: Codable {
-    var cast: [Actor]
-}
 
-struct Actor: Codable {
-    let name: String
-    let character: String
-    let profilePath: String?
-    
-    enum CodingKeys: String, CodingKey {
-        case name
-        case profilePath = "profile_path"
-        case character
-    }
-}
 
-struct ImagesResponse: Codable {
-    let backdrops: [Image]
-    let posters: [Image]
-}
 
-struct Image: Codable {
-    let filePath: String
-    
-    enum CodingKeys: String, CodingKey {
-        case filePath = "file_path"
-    }
-}
+
 
 

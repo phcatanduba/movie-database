@@ -50,9 +50,7 @@ class MovieDatabaseViewController: UIViewController {
         if segue.identifier == "MovieDetails" {
             guard let destination = segue.destination as? MovieDetailsViewController, let movieCell = sender as? MovieCell, let movie = movieCell.movie else { return }
             MoviesStore.requestDetails(id: movie.id) { response in
-                DispatchQueue.main.async {
-                    destination.movie?.runtime = response.duration
-                }
+                destination.movie?.runtime = response.duration
             }
             
             MoviesStore.requestCastAndCrew(id: movie.id) { response in
