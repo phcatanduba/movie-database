@@ -13,6 +13,6 @@ struct Genre: Equatable, Hashable, Codable {
     
     init(id: Int) {
         self.id = id
-        self.name = GenresStore.genres[id]?.name ?? ""
+        self.name = GenresRepository.current.genres[id]?.name ?? ""
     }
 }

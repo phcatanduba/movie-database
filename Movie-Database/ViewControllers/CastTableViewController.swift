@@ -23,7 +23,7 @@ class CastTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CastCell", for: indexPath) as? CastCell else { fatalError("Cannot create a cell") }
         let actor = cast[indexPath.row]
         
-        cell.imageCell.kf.setImage(with: URL(string: ImagesStore.rootURL + (actor.profilePath ?? "")))
+        cell.imageCell.kf.setImage(with: URL(string: API.imagesURL + (actor.profilePath ?? "")))
         cell.imageCell.layer.cornerRadius = 25
         cell.characterName.text = actor.character
         cell.actorName.text = actor.name

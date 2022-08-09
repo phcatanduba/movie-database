@@ -25,7 +25,7 @@ class PhotosTableViewController: UITableViewController {
         
         let path = images[indexPath.row].filePath
         
-        cell.imageCell?.kf.setImage(with: URL(string: ImagesStore.rootURL + path))
+        cell.imageCell?.kf.setImage(with: URL(string: API.imagesURL + path))
 
         cell.backgroundColor = .clear
         cell.selectionStyle = .none

@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import Combine
 
 class MovieDatabaseViewController: UIViewController {
 
@@ -23,48 +24,48 @@ class MovieDatabaseViewController: UIViewController {
         case main
     }
     
-    var moviesStore: MoviesStore?
+    private let viewModel = MoviesViewModel()
+    private var subscribers = Set<AnyCancellable>()
     
-    func requests() {
-        _ = GenresStore {
-            self.moviesStore = MoviesStore(callback: self.configureDataSource)
-        }
+    var comingSoon: [Movie] = []
+    var nowPlaying: [Movie] = []
+    var moviesList: [Movie] {
+        viewModel.isComingSoon ? comingSoon : nowPlaying
     }
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
         movies.delegate = self
         movies.collectionViewLayout = configureLayout()
-        requests()
         configureDataSource()
-        segmentedControl.addTarget(self, action: #selector(configureDataSource), for: .allEvents)
+        segmentedControl.addTarget(self, action: #selector(changeSegmentedControl), for: .valueChanged)
+        observeViewModel()
     }
     
-    var moviesList: [Movie] {
-        if segmentedControl.selectedSegmentIndex == 0 {
-            return MoviesStore.moviesNowPlaying
-        } else {
-            return MoviesStore.moviesComingSoon
+    @objc func changeSegmentedControl() {
+        viewModel.isComingSoon.toggle()
+        configureDataSource()
+    }
+    
+    private func observeViewModel() {
+        
+        viewModel.$nowPlaying.getOutput(store: &subscribers) { [weak self] movies in
+            self?.nowPlaying = movies
+            self?.configureDataSource()
+        }
+        
+        viewModel.$comingSoon.getOutput(store: &subscribers) { [weak self] movies in
+            self?.comingSoon = movies
+            self?.configureDataSource()
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "MovieDetails" {
             guard let destination = segue.destination as? MovieDetailsViewController, let movieCell = sender as? MovieCell, let movie = movieCell.movie else { return }
-            MoviesStore.requestDetails(id: movie.id) { response in
-                destination.movie?.runtime = response.duration
-            }
             
-            MoviesStore.requestCastAndCrew(id: movie.id) { response in
-                destination.cast = response.cast
-            }
-            
-            MoviesStore.requestImages(id: movie.id) { response in
-                destination.images.append(contentsOf: response.backdrops)
-            }
-            
-            destination.movie = movie
+            let viewModel = DetailsViewModel(movie: movie)
+            destination.viewModel = viewModel
         }
     }
     
@@ -90,16 +91,15 @@ class MovieDatabaseViewController: UIViewController {
         let section = NSCollectionLayoutSection(group: group)
         
         return UICollectionViewCompositionalLayout(section: section)
-        
     }
     
-    @objc func configureDataSource() {
+    func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Movie>(collectionView: self.movies) { collectionView, indexPath, movie -> UICollectionViewCell? in
             guard let cell = self.movies.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as? MovieCell else {
                 fatalError("Cannot create new cell")
             }
             cell.movie = movie
-            cell.image.kf.setImage(with: URL(string: ImagesStore.rootURL + movie.posterPath))
+            cell.image.kf.setImage(with: URL(string: API.imagesURL + movie.posterPath))
             cell.title.text = movie.title
             cell.info.text = "\(movie.genres[0].name) * \(movie.releaseDate.formatted(date: .numeric, time: .omitted)) | \(movie.voteAverage)"
             return cell
@@ -127,8 +127,7 @@ extension MovieDatabaseViewController: UICollectionViewDelegate {
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
 
         if scrollView.contentSize.height - 506 < scrollView.bounds.minY {
-            guard let moviesStore = moviesStore else { return }
-            moviesStore.page += 1
+            viewModel.nextPage()
         }
     }
 }

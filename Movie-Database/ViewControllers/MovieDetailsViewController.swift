@@ -5,9 +5,9 @@
 //  Created by Pedro Henrique Catanduba de Andrade on 18/07/22.
 //
 
-import Foundation
 import Kingfisher
 import UIKit
+import Combine
 
 class MovieDetailsViewController: UIViewController {
     
@@ -19,29 +19,7 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var rating: UILabel!
     @IBOutlet weak var genres: UILabel!
-    
     var initialHeightSize: CGFloat = CGFloat()
-    var movie: Movie? {
-        didSet {
-            if isViewLoaded {
-                updateData()
-            }
-        }
-    }
-    var cast: [Actor] = [] {
-        didSet {
-            guard let castAndCrewTableViewController = self.children.first as? CastTableViewController else { return }
-            castAndCrewTableViewController.cast = cast
-            castAndCrewTableViewController.tableView.reloadData()
-        }
-    }
-    
-    var images: [Image] = [] {
-        didSet {
-            configureDataSource()
-            photos.collectionViewLayout = configureLayout()
-        }
-    }
     
     @IBAction func changeSynopsisHeight(_ sender: Any) {
         if synopsis.isTruncated {
@@ -66,6 +44,17 @@ class MovieDetailsViewController: UIViewController {
         case main
     }
     
+    var viewModel: DetailsViewModel? {
+        didSet {
+            viewModel?.start()
+        }
+    }
+    
+    var cast: [Actor] = []
+    var images: [Image] = []
+    
+    var subscribers = Set<AnyCancellable>()
+    
     override func viewWillAppear(_ animated: Bool) {
         guard let views = scrollView.subviews.first else { return }
                 
@@ -79,6 +68,7 @@ class MovieDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateData()
+        observerViewModel()
     }
     
     @IBAction func unwind( _ seg: UIStoryboardSegue) {
@@ -98,8 +88,42 @@ class MovieDetailsViewController: UIViewController {
         }
     }
     
+    func observerViewModel() {
+        guard let viewModel = viewModel else {
+            return
+        }
+        
+        viewModel.$photos.getOutput(store: &subscribers) { [weak self] photos in
+            if let self = self {
+                self.images = photos
+                self.configureDataSource()
+                self.photos.collectionViewLayout = self.configureLayout()
+            }
+        }
+        
+        viewModel.$castAndCrew.getOutput(store: &subscribers) { [weak self] castAndCrew in
+            if let self = self {
+                self.cast = castAndCrew
+                guard let castAndCrewTableViewController = self.children.first as? CastTableViewController else { return }
+                castAndCrewTableViewController.cast = self.cast
+                castAndCrewTableViewController.tableView.reloadData()
+            }
+        }
+    }
+    
+    func observer<T: Publisher>(publisher: T, completion: @escaping (T.Output) -> ()) {
+        publisher.sink(receiveCompletion: { _ in
+            //handle the error
+        }) { output in
+            DispatchQueue.main.async {
+                completion(output)
+            }
+        }
+        .store(in: &subscribers)
+    }
+    
     func updateData() {
-        guard let movie = movie else {
+        guard let movie = viewModel?.movie else {
             return
         }
 
@@ -108,7 +132,7 @@ class MovieDetailsViewController: UIViewController {
         }).joined(separator: ", ")
         self.synopsis.text = movie.overview + "\r\n"
         self.titleLabel.text = movie.title
-        self.imageView.kf.setImage(with: URL(string: ImagesStore.rootURL + movie.backdropPath))
+        self.imageView.kf.setImage(with: URL(string: API.imagesURL + movie.backdropPath))
         self.rating.text = "\(movie.voteAverage)"
         self.runtime.text = movie.runtime
     }
@@ -128,7 +152,7 @@ class MovieDetailsViewController: UIViewController {
         dataSource = UICollectionViewDiffableDataSource<Section, String>(collectionView: self.photos, cellProvider: { collectionView, indexPath, imagePath in
             guard let cell = self.photos.dequeueReusableCell(withReuseIdentifier: "PhotoCellCollectionView", for: indexPath) as? PhotoCellCollectionView else { fatalError("Cannot create a cell")}
             
-            cell.imageView.kf.setImage(with: URL(string: ImagesStore.rootURL + imagePath))
+            cell.imageView.kf.setImage(with: URL(string: API.imagesURL + imagePath))
             
             return cell
         })
@@ -143,5 +167,7 @@ class MovieDetailsViewController: UIViewController {
         dataSource.apply(initialSnapshot)
     }
 }
+
+
 
 

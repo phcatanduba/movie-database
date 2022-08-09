@@ -7,41 +7,41 @@
 
 import Foundation
 
-class GenresStore {
-    static private let apiKey = "05c08d6250b844f0386ad2e517d26d8f"
-    private let genresURL = URL(string: "https://api.themoviedb.org/3/genre/movie/list?api_key=\(apiKey)&language=en-US&page=1")
-
-    static private(set) var genres: [Int : Genre] = [:]
-    private let genresJsonURL = URL(fileURLWithPath: "Genres.json", relativeTo: FileManager.documentsDirectoryURL)
+class GenresRepository {
     
-    let callback: () -> ()
+    static let current = GenresRepository()
     
-    init(callback: @escaping () -> ()) {
-        self.callback = callback
+    var genres: [Int : Genre] = [:]
+    
+    private init() {
         requestGenres()
     }
     
+    private var genresJsonURL: URL {
+        URL(fileURLWithPath: "Genres.json", relativeTo: FileManager.documentsDirectoryURL)
+    }
+    
     private func saveJSON() {
-        Store.shared.saveJSON(content: GenresStore.genres, url: genresJsonURL)
+        Repository.saveJSON(content: genres, url: genresJsonURL)
     }
     
     private func loadJSON() -> [Int : Genre]? {
-        guard let genresDecoded = Store.shared.loadJSON(type: [Int : Genre].self, url: genresJsonURL) else {
+        guard let genresDecoded = Repository.loadJSON(type: [Int : Genre].self, url: genresJsonURL) else {
             print("Error in decoder \(Genre.self)")
             return nil
         }
 
-        GenresStore.genres = genresDecoded
+        genres = genresDecoded
         
         return nil
     }
     
-    private  func requestGenres() {
-        guard let url = genresURL else { return }
+    private func requestGenres() {
+        guard let url = API.genresURL else { return }
         let decoder = JSONDecoder()
         
         if loadJSON() == nil {
-            Store.shared.getData(from: url) { data, response, error in
+            Repository.getData(from: url) { data, response, error in
                 guard let data = data else {
                     return
                 }
@@ -55,14 +55,11 @@ class GenresStore {
                 }
                 
                 result.genres.forEach { genre in
-                    GenresStore.genres[genre.id] = genre
+                    self.genres[genre.id] = genre
                 }
                 
                 self.saveJSON()
-                self.callback()
             }
-        } else {
-            self.callback()
         }
     }
 }
