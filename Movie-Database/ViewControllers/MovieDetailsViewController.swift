@@ -111,17 +111,6 @@ class MovieDetailsViewController: UIViewController {
         }
     }
     
-    func observer<T: Publisher>(publisher: T, completion: @escaping (T.Output) -> ()) {
-        publisher.sink(receiveCompletion: { _ in
-            //handle the error
-        }) { output in
-            DispatchQueue.main.async {
-                completion(output)
-            }
-        }
-        .store(in: &subscribers)
-    }
-    
     func updateData() {
         guard let movie = viewModel?.movie else {
             return
