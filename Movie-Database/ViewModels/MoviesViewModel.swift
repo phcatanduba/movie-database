@@ -28,6 +28,9 @@ class MoviesViewModel {
     
     init(repository: Repository = Repository()) {
         self.repository = repository
+    }
+    
+    func start() {
         self.getAllMoviesType()
     }
     
@@ -62,5 +65,6 @@ class MoviesViewModel {
         return movies.sorted(by: { $0.originalTitle.lowercased() < $1.originalTitle.lowercased() })
     }
 }
+
 
 

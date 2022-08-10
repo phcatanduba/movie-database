@@ -110,20 +110,19 @@ class MovieDetailsViewController: UIViewController {
             }
         }
     }
+
     
     func updateData() {
-        guard let movie = viewModel?.movie else {
+        guard let viewModel = viewModel else {
             return
         }
 
-        self.genres.text = movie.genres.map({ genre in
-            genre.name
-        }).joined(separator: ", ")
-        self.synopsis.text = movie.overview + "\r\n"
-        self.titleLabel.text = movie.title
-        self.imageView.kf.setImage(with: URL(string: API.imagesURL + movie.backdropPath))
-        self.rating.text = "\(movie.voteAverage)"
-        self.runtime.text = movie.runtime
+        self.genres.text = viewModel.getGenreText()
+        self.synopsis.text = viewModel.getOverview()
+        self.titleLabel.text = viewModel.getTitle()
+        self.imageView.kf.setImage(with: viewModel.getImageURL())
+        self.rating.text = "\(viewModel.movie.voteAverage)"
+        self.runtime.text = viewModel.movie.runtime
     }
     
     func configureLayout() -> UICollectionViewCompositionalLayout {

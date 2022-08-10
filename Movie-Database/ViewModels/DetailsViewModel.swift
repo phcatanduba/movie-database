@@ -21,7 +21,6 @@ class DetailsViewModel {
     func start() {
         let id = movie.id
         self.getCastAndCrew(id)
-        self.getDetails(id)
         self.getPhotos(id)
     }
     
@@ -37,9 +36,21 @@ class DetailsViewModel {
         }
     }
     
-    private func getDetails(_ id: Int) {
-        repository.requestDetails(id: id) { response in
-           //self.duration = response.duration
-        }
+    func getGenreText() -> String {
+        movie.genres.map({ genre in
+            genre.name
+        }).joined(separator: ", ")
+    }
+    
+    func getOverview() -> String {
+        movie.overview + "\r\n"
+    }
+    
+    func getTitle() -> String {
+        movie.title
+    }
+    
+    func getImageURL() -> URL {
+        URL(string: API.imagesURL + movie.backdropPath) ?? URL(fileURLWithPath: "")
     }
 }

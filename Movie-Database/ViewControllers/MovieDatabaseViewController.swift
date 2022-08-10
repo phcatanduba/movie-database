@@ -40,6 +40,7 @@ class MovieDatabaseViewController: UIViewController {
         configureDataSource()
         segmentedControl.addTarget(self, action: #selector(changeSegmentedControl), for: .valueChanged)
         observeViewModel()
+        viewModel.start()
     }
     
     @objc func changeSegmentedControl() {
@@ -104,7 +105,6 @@ class MovieDatabaseViewController: UIViewController {
             cell.info.text = "\(movie.genres[0].name) * \(movie.releaseDate.formatted(date: .numeric, time: .omitted)) | \(movie.voteAverage)"
             return cell
         }
-
         
         var initialSnapshot = NSDiffableDataSourceSnapshot<Section, Movie>()
         initialSnapshot.appendSections([.main])
