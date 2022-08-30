@@ -8,8 +8,7 @@
 import Foundation
 import UIKit
 
-
-class Repository {
+class Repository: RepositoryProtocol {
     static func saveJSON<encodable: Encodable>(content: encodable, url: URL) {
         let encoder = JSONEncoder()
         
@@ -118,4 +117,11 @@ class Repository {
             }
         }
     }
+}
+
+protocol RepositoryProtocol {
+    func requestMovies(type: MovieType, completion: @escaping ([Movie]) -> ())
+    func requestDetails(id: Int, completion: @escaping (DetailsResponse) -> ())
+    func requestCastAndCrew(id: Int, completion: @escaping (CastAndCrewResponse) -> ())
+    func requestPhotos(id: Int, completion: @escaping (ImagesResponse) -> ())
 }

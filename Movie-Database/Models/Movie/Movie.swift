@@ -37,6 +37,19 @@ struct Movie: Equatable, Hashable, Codable {
         self.genres = genresId.map{ Genre(id: $0) }
     }
     
+    init(id: Int, voteAverage: Double, title: String, originalTitle: String, popularity: Double, posterPath: String, backdropPath: String, overview: String, releaseDate: String, genres: [Genre]) {
+        self.id = id
+        self.voteAverage = voteAverage
+        self.title = title
+        self.originalTitle = originalTitle
+        self.popularity = popularity
+        self.posterPath = posterPath
+        self.backdropPath =  backdropPath
+        self.overview = overview
+        self.releaseDate = Date(dateString: releaseDate)
+        self.genres = genres
+    }
+    
     enum CodingKeys: String, CodingKey {
         case id
         case voteAverage = "vote_average"

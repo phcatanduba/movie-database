@@ -12,7 +12,7 @@ struct ImagesResponse: Codable {
     let posters: [Image]
 }
 
-struct Image: Codable {
+struct Image: Codable, Equatable {
     let filePath: String
     
     enum CodingKeys: String, CodingKey {

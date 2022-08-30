@@ -11,8 +11,8 @@ struct Genre: Equatable, Hashable, Codable {
     let id: Int
     let name: String
     
-    init(id: Int) {
+    init(id: Int, name: String = "") {
         self.id = id
-        self.name = GenresRepository.current.genres[id]?.name ?? ""
+        self.name = GenresRepository.current.genres[id]?.name ?? name
     }
 }

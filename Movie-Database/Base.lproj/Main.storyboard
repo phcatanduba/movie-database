@@ -24,22 +24,22 @@
                                 <rect key="frame" x="20" y="65" width="335.33333333333331" height="682"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="11" id="o4z-IX-5iW">
-                                        <rect key="frame" x="0.0" y="0.0" width="335.33333333333331" height="79.333333333333329"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="335.33333333333331" height="80.333333333333329"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" spacingType="standard" id="acO-Ey-MnD" userLabel="Header">
-                                                <rect key="frame" x="0.0" y="0.0" width="335.33333333333331" height="37.333333333333336"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="335.33333333333331" height="38.333333333333336"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="CI&amp;T Movie DB" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GRD-7p-jSK">
-                                                        <rect key="frame" x="0.0" y="0.0" width="280.33333333333331" height="37.333333333333336"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="280.33333333333331" height="38.333333333333336"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="32"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                                         <color key="textColor" name="Text"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9aJ-SQ-80U" userLabel="Search">
-                                                        <rect key="frame" x="288.33333333333331" y="0.0" width="47" height="37.333333333333336"/>
+                                                        <rect key="frame" x="288.33333333333331" y="0.0" width="47" height="38.333333333333336"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" image="SearchIcon">
                                                             <color key="baseForegroundColor" name="Text"/>
@@ -49,7 +49,7 @@
                                                 <viewLayoutGuide key="safeArea" id="HuH-x4-rsf"/>
                                             </stackView>
                                             <segmentedControl opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="oi7-mI-cOY">
-                                                <rect key="frame" x="0.0" y="48.333333333333329" width="335.33333333333331" height="32"/>
+                                                <rect key="frame" x="0.0" y="49.333333333333329" width="335.33333333333331" height="32"/>
                                                 <color key="backgroundColor" red="0.46274509803921571" green="0.46274509803921571" blue="0.50196078431372548" alpha="0.25001253039631621" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <segments>
                                                     <segment title="Now Playing"/>
@@ -61,7 +61,7 @@
                                         </subviews>
                                     </stackView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lIs-mm-C87">
-                                        <rect key="frame" x="0.0" y="99.333333333333314" width="335.33333333333331" height="582.66666666666674"/>
+                                        <rect key="frame" x="0.0" y="100.33333333333331" width="335.33333333333331" height="581.66666666666674"/>
                                         <color key="backgroundColor" name="Primary"/>
                                         <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="-23" maxY="0.0"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="50" minimumInteritemSpacing="10" sectionInsetReference="safeArea" id="m2E-Qd-av6">
@@ -79,16 +79,16 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7p9-7d-ex9">
-                                                            <rect key="frame" x="0.0" y="260" width="162" height="21"/>
+                                                            <rect key="frame" x="0.0" y="260" width="162" height="21.666666666666686"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <color key="tintColor" name="Text"/>
-                                                            <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="18"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                             <color key="textColor" name="Text"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F7q-jN-SUe">
-                                                            <rect key="frame" x="0.0" y="281" width="162" height="12.666666666666686"/>
-                                                            <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="10"/>
+                                                            <rect key="frame" x="0.0" y="281.66666666666669" width="162" height="13"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                             <color key="textColor" name="SynopsisText"/>
                                                             <color key="highlightedColor" systemColor="linkColor"/>
                                                             <color key="shadowColor" red="0.99999600649999998" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>

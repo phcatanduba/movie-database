@@ -23,10 +23,10 @@ class MoviesViewModel {
         isComingSoon ? comingSoon : nowPlaying
     }
     
-    private var page: Int = 1
-    private let repository: Repository
+    var page: Int = 1
+    private let repository: RepositoryProtocol
     
-    init(repository: Repository = Repository()) {
+    init(repository: RepositoryProtocol = Repository()) {
         self.repository = repository
     }
     

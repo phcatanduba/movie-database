@@ -11,7 +11,7 @@ struct CastAndCrewResponse: Codable {
     var cast: [Actor]
 }
 
-struct Actor: Codable {
+struct Actor: Codable, Equatable {
     let name: String
     let character: String
     let profilePath: String?

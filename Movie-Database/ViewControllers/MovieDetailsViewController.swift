@@ -8,6 +8,7 @@
 import Kingfisher
 import UIKit
 import Combine
+import Resolver
 
 class MovieDetailsViewController: UIViewController {
     
@@ -44,11 +45,7 @@ class MovieDetailsViewController: UIViewController {
         case main
     }
     
-    var viewModel: DetailsViewModel? {
-        didSet {
-            viewModel?.start()
-        }
-    }
+    var viewModel: DetailsViewModel = Resolver.resolve()
     
     var cast: [Actor] = []
     var images: [Image] = []
@@ -69,6 +66,7 @@ class MovieDetailsViewController: UIViewController {
         super.viewDidLoad()
         updateData()
         observerViewModel()
+        viewModel.start()
     }
     
     @IBAction func unwind( _ seg: UIStoryboardSegue) {
@@ -89,10 +87,6 @@ class MovieDetailsViewController: UIViewController {
     }
     
     func observerViewModel() {
-        guard let viewModel = viewModel else {
-            return
-        }
-        
         viewModel.$photos.getOutput(store: &subscribers) { [weak self] photos in
             if let self = self {
                 self.images = photos
@@ -113,16 +107,12 @@ class MovieDetailsViewController: UIViewController {
 
     
     func updateData() {
-        guard let viewModel = viewModel else {
-            return
-        }
-
         self.genres.text = viewModel.getGenreText()
         self.synopsis.text = viewModel.getOverview()
         self.titleLabel.text = viewModel.getTitle()
         self.imageView.kf.setImage(with: viewModel.getImageURL())
-        self.rating.text = "\(viewModel.movie.voteAverage)"
-        self.runtime.text = viewModel.movie.runtime
+        self.rating.text = "\(viewModel.movie?.voteAverage ?? 0.0)"
+        self.runtime.text = viewModel.movie?.runtime
     }
     
     func configureLayout() -> UICollectionViewCompositionalLayout {
@@ -132,7 +122,6 @@ class MovieDetailsViewController: UIViewController {
         let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(groupWidth), heightDimension: .fractionalHeight(1.0))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
-        
         return UICollectionViewCompositionalLayout(section: section)
     }
     

@@ -10,16 +10,15 @@ import Foundation
 class DetailsViewModel {
     @Published var castAndCrew: [Actor] = []
     @Published var photos: [Image] = []
-    var movie: Movie
-    private var repository: Repository
+    var movie: Movie?
+    private var repository: RepositoryProtocol
     
-    init(movie: Movie, repository: Repository = Repository()) {
+    init(repository: RepositoryProtocol = Repository()) {
         self.repository = repository
-        self.movie = movie
     }
     
     func start() {
-        let id = movie.id
+        guard let id = movie?.id else { return }
         self.getCastAndCrew(id)
         self.getPhotos(id)
     }
@@ -33,24 +32,29 @@ class DetailsViewModel {
     private func getPhotos(_ id: Int) {
         repository.requestPhotos(id: id) { response in
             self.photos.append(contentsOf: response.backdrops)
+            self.photos.append(contentsOf: response.posters)
         }
     }
     
-    func getGenreText() -> String {
-        movie.genres.map({ genre in
+    func getGenreText() -> String? {
+        movie?.genres.map({ genre in
             genre.name
         }).joined(separator: ", ")
     }
     
-    func getOverview() -> String {
-        movie.overview + "\r\n"
+    func getOverview() -> String? {
+        if let overview = movie?.overview {
+            return overview + "\r\n"
+        }
+        
+        return nil
     }
     
-    func getTitle() -> String {
-        movie.title
+    func getTitle() -> String? {
+        movie?.title
     }
     
-    func getImageURL() -> URL {
-        URL(string: API.imagesURL + movie.backdropPath) ?? URL(fileURLWithPath: "")
+    func getImageURL() -> URL? {
+        URL(string: API.imagesURL + (movie?.backdropPath ?? ""))
     }
 }

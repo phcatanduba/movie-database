@@ -3,5 +3,12 @@
 
 target 'Movie-Database' do
     pod 'Kingfisher', '~> 7.0'
+    pod 'Resolver'
+    
+end
+    
+target 'Movie-DatabaseTests' do
+  pod 'Kingfisher', '~> 7.0'
+  pod 'Resolver'
 
 end

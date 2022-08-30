@@ -65,7 +65,8 @@ class MovieDatabaseViewController: UIViewController {
         if segue.identifier == "MovieDetails" {
             guard let destination = segue.destination as? MovieDetailsViewController, let movieCell = sender as? MovieCell, let movie = movieCell.movie else { return }
             
-            let viewModel = DetailsViewModel(movie: movie)
+            let viewModel = DetailsViewModel()
+            viewModel.movie = movie
             destination.viewModel = viewModel
         }
     }
