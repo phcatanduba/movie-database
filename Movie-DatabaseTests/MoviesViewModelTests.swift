@@ -92,6 +92,10 @@ class RepositoryMock: RepositoryProtocol {
         
     }
     
+    func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        
+    }
+    
     func requestCastAndCrew(id: Int, completion: @escaping (CastAndCrewResponse) -> ()) {
         completion(CastAndCrewResponse(cast: [Actor(name: "name", character: "character", profilePath: "profilePath")]))
     }

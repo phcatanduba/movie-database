@@ -8,7 +8,13 @@
 import Foundation
 import UIKit
 
-class Repository: RepositoryProtocol {
+class Repository: RepositoryProtocol { 
+    let session: URLSessionProtocol
+    
+    init(urlSession: URLSessionProtocol = URLSession.shared) {
+        self.session = urlSession
+    }
+    
     static func saveJSON<encodable: Encodable>(content: encodable, url: URL) {
         let encoder = JSONEncoder()
         
@@ -38,20 +44,16 @@ class Repository: RepositoryProtocol {
         return nil
     }
     
-    static func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
-        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+    func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        session.dataTaskWithURL(url, completion: completion).resume()
     }
     
     func requestMovies(type: MovieType, completion: @escaping ([Movie]) -> ()) {
         guard let url = type.url else { return }
         let decoder = JSONDecoder()
         
-        Repository.getData(from: url) { data, response, error in
+        getData(from: url) { data, response, error in
             guard let data = data else {
-                return
-            }
-            
-            guard response != nil else {
                 return
             }
 
@@ -70,7 +72,7 @@ class Repository: RepositoryProtocol {
         
         let decoder = JSONDecoder()
         
-        Repository.getData(from: url) { data, response, error in
+        getData(from: url) { data, response, error in
             guard let data = data else {
                 return
             }
@@ -88,7 +90,7 @@ class Repository: RepositoryProtocol {
         
         let decoder = JSONDecoder()
         
-        Repository.getData(from: url) { data, response, error in
+        getData(from: url) { data, response, error in
             guard let data = data else {
                 return
             }
@@ -105,7 +107,7 @@ class Repository: RepositoryProtocol {
         
         let decoder = JSONDecoder()
         
-        Repository.getData(from: url) { data, response, error in
+        getData(from: url) { data, response, error in
             guard let data = data else {
                 return
             }
@@ -124,4 +126,23 @@ protocol RepositoryProtocol {
     func requestDetails(id: Int, completion: @escaping (DetailsResponse) -> ())
     func requestCastAndCrew(id: Int, completion: @escaping (CastAndCrewResponse) -> ())
     func requestPhotos(id: Int, completion: @escaping (ImagesResponse) -> ())
+    func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ())
 }
+
+protocol URLSessionProtocol {
+    func dataTaskWithURL(_ url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) -> URLSessionDataTaskProtocol
+}
+
+extension URLSession: URLSessionProtocol {
+    func dataTaskWithURL(_ url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) -> URLSessionDataTaskProtocol {
+        dataTask(with: url, completionHandler: completion) as URLSessionDataTaskProtocol
+    }
+}
+
+protocol URLSessionDataTaskProtocol {
+    func resume()
+}
+
+extension URLSessionDataTask: URLSessionDataTaskProtocol { }
+
+

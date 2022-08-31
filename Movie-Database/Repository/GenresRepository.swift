@@ -10,10 +10,12 @@ import Foundation
 class GenresRepository {
     
     static let current = GenresRepository()
+    let repository: RepositoryProtocol
     
     var genres: [Int : Genre] = [:]
     
-    private init() {
+    private init(repository: RepositoryProtocol = Repository()) {
+        self.repository = repository
         requestGenres()
     }
     
@@ -41,7 +43,7 @@ class GenresRepository {
         let decoder = JSONDecoder()
         
         if loadJSON() == nil {
-            Repository.getData(from: url) { data, response, error in
+            repository.getData(from: url) { data, response, error in
                 guard let data = data else {
                     return
                 }
